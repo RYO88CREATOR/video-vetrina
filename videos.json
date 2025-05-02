@@ -1,1 +1,32 @@
-[]
+[
+  {
+    "title": "True Blood",
+    "seasons": [
+      {
+        "season": 1,
+        "episodes": [
+          {
+            "title": "Episodio 1",
+            "sources": {
+              "supervideo": "https://supervideo.cc/embed-s2bk5mgu7en7.html",
+              "dropload": "https://dropload.io/embed-jpfcyriamecp.html"
+            }
+          },
+          {
+            "title": "Episodio 2",
+            "sources": {
+              "supervideo": "https://supervideo.cc/embed-dk8ku5gfntbx.html",
+              "dropload": "https://dropload.io/embed-nd6yfqipt9u7.html"
+            }
+          },
+          {
+            "title": "Episodio 3",
+            "sources": {
+              "supervideo": "https://supervideo.cc/embed-kh5uy15nehq0.html",
+              "dropload": "https://dropload.io/embed-46heh3qj8duf.html"
+            }
+          }
+        ]
+      }
+    ]
+  }
