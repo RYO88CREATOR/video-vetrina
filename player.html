@@ -3,15 +3,111 @@
 <head>
   <meta charset="UTF-8">
   <title>Player Video</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    #video-frame {
+      width: 100%;
+      height: 480px;
+      border: none;
+      margin-bottom: 20px;
+    }
+    .source-button, .nav-button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      background-color: #444;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .source-button.active {
+      background-color: #28a745;
+    }
+    .next-preview {
+      margin-top: 30px;
+      background-color: #222;
+      padding: 15px;
+      border-radius: 10px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Riproduzione Video</h1>
-  <video id="videoPlayer" width="100%" controls autoplay></video>
+  <h1 id="ep-title">Player Video</h1>
+  <iframe id="video-frame" allowfullscreen></iframe><br>
+
+  <button class="source-button" onclick="switchSource('supervideo')" id="btn-super">Fonte 1 (Supervideo)</button>
+  <button class="source-button" onclick="switchSource('dropload')" id="btn-drop">Fonte 2 (Dropload)</button>
+
+  <br><br>
+  <button class="nav-button" onclick="goBack()">← Torna alla lista episodi</button>
+
+  <div id="next-episode" class="next-preview" style="display: none;">
+    <h3>Prossimo episodio:</h3>
+    <p id="next-title"></p>
+    <button class="nav-button" id="next-btn">Guarda</button>
+  </div>
+
   <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const videoUrl = urlParams.get('video');
-    if (videoUrl) {
-      document.getElementById('videoPlayer').src = videoUrl;
+    const params = new URLSearchParams(window.location.search);
+    const serie = parseInt(params.get('serie'));
+    const stagione = parseInt(params.get('stagione'));
+    const episodio = parseInt(params.get('episodio'));
+
+    let currentSource = 'supervideo';
+
+    fetch('videos.json')
+      .then(res => res.json())
+      .then(data => {
+        const seriesData = data[serie];
+        const seasons = seriesData.seasons;
+        const currentSeason = seasons[stagione];
+        const epData = currentSeason.episodes[episodio];
+
+        document.getElementById('ep-title').innerText = `${seriesData.title} - ${epData.title}`;
+        window.videoLinks = epData.sources;
+        switchSource(currentSource);
+
+        let nextEpisodeData = null;
+        let nextStagione = stagione;
+        let nextEpisodio = episodio + 1;
+
+        // Verifica episodio successivo nella stessa stagione
+        if (currentSeason.episodes[nextEpisodio]) {
+          nextEpisodeData = currentSeason.episodes[nextEpisodio];
+        } else if (seasons[stagione + 1]) {
+          // Se non esiste, verifica stagione successiva
+          nextStagione = stagione + 1;
+          nextEpisodio = 0;
+          if (seasons[nextStagione].episodes[0]) {
+            nextEpisodeData = seasons[nextStagione].episodes[0];
+          }
+        }
+
+        if (nextEpisodeData) {
+          document.getElementById('next-title').innerText = nextEpisodeData.title;
+          document.getElementById('next-btn').onclick = () => {
+            window.location.href = `player.html?serie=${serie}&stagione=${nextStagione}&episodio=${nextEpisodio}`;
+          };
+          document.getElementById('next-episode').style.display = 'block';
+        }
+      });
+
+    function switchSource(source) {
+      currentSource = source;
+      document.getElementById('video-frame').src = window.videoLinks[source];
+      document.getElementById('btn-super').classList.remove('active');
+      document.getElementById('btn-drop').classList.remove('active');
+      document.getElementById('btn-' + (source === 'supervideo' ? 'super' : 'drop')).classList.add('active');
+    }
+
+    function goBack() {
+      window.location.href = `episodi.html?serie=${serie}&stagione=${stagione}`;
     }
   </script>
 </body>
