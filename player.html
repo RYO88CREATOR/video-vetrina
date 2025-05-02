@@ -30,12 +30,12 @@
 </head>
 <body>
   <h1 id="ep-title">Caricamento...</h1>
-
-  <button class="nav-button" onclick="switchSource('supervideo')">Apri Fonte 1 (Supervideo)</button>
-  <button class="nav-button" onclick="switchSource('dropload')">Apri Fonte 2 (Dropload)</button>
-
-  <br><br>
-  <button class="nav-button" onclick="goBack()">← Torna alla lista episodi</button>
+  <div id="buttons" style="display:none;">
+    <button class="nav-button" onclick="switchSource('supervideo')">Apri Fonte 1 (Supervideo)</button>
+    <button class="nav-button" onclick="switchSource('dropload')">Apri Fonte 2 (Dropload)</button>
+    <br><br>
+    <button class="nav-button" onclick="goBack()">← Torna alla lista episodi</button>
+  </div>
 
   <div id="next-episode" class="next-preview" style="display: none;">
     <h3>Prossimo episodio:</h3>
@@ -49,6 +49,11 @@
     const stagione = parseInt(params.get('stagione'));
     const episodio = parseInt(params.get('episodio'));
 
+    if (isNaN(serie) || isNaN(stagione) || isNaN(episodio)) {
+      document.getElementById('ep-title').innerText = "Errore: parametri mancanti o non validi.";
+      throw new Error("Parametri invalidi");
+    }
+
     let videoLinks = {};
 
     fetch('videos.json')
@@ -61,6 +66,7 @@
 
         document.getElementById('ep-title').innerText = `${seriesData.title} - ${epData.title}`;
         videoLinks = epData.sources;
+        document.getElementById('buttons').style.display = 'block';
 
         // Prossimo episodio
         let nextEp = currentSeason.episodes[episodio + 1];
@@ -80,6 +86,10 @@
           };
           document.getElementById('next-episode').style.display = 'block';
         }
+      })
+      .catch(error => {
+        document.getElementById('ep-title').innerText = "Errore nel caricamento dei dati.";
+        console.error(error);
       });
 
     function switchSource(source) {
