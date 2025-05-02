@@ -1,31 +1,17 @@
 [
   {
-    "title": "True Blood",
-    "poster": "https://guardaserie.now/uploads/thumb/300x450-0-80/2020-02/1581333502_true-blood.jpg",
-    "seasons": [
+    "titolo": "True Blood",
+    "copertina": "https://guardaserie.now/uploads/thumb/300x450-0-80/2020-02/1581333502_true-blood.jpg",
+    "stagioni": [
       {
-        "season": 1,
-        "episodes": [
+        "stagione": 1,
+        "episodi": [
           {
-            "title": "Episodio 1",
-            "sources": {
-              "supervideo": "https://supervideo.cc/embed-s2bk5mgu7en7.html",
-              "dropload": "https://dropload.io/embed-jpfcyriamecp.html"
-            }
-          },
-          {
-            "title": "Episodio 2",
-            "sources": {
-              "supervideo": "https://supervideo.cc/embed-dk8ku5gfntbx.html",
-              "dropload": "https://dropload.io/embed-nd6yfqipt9u7.html"
-            }
-          },
-          {
-            "title": "Episodio 3",
-            "sources": {
-              "supervideo": "https://supervideo.cc/embed-kh5uy15nehq0.html",
-              "dropload": "https://dropload.io/embed-46heh3qj8duf.html"
-            }
+            "titolo": "Episodio 1",
+            "fonti": [
+              "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vZW1iZWQxLmh0bWw=",
+              "aHR0cHM6Ly93d3cuZXhhbXBsZS5jb20vZW1iZWQyLmh0bWw="
+            ]
           }
         ]
       }
