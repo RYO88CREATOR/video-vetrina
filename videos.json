@@ -1,6 +1,7 @@
 [
   {
     "title": "True Blood",
+    "poster": "https://guardaserie.now/uploads/thumb/300x450-0-80/2020-02/1581333502_true-blood.jpg",
     "seasons": [
       {
         "season": 1,
@@ -30,3 +31,4 @@
       }
     ]
   }
+]
