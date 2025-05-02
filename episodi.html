@@ -18,9 +18,9 @@
       .then(data => {
         const episodes = data[serieIndex].seasons[stagioneIndex].episodes;
         const container = document.getElementById('episode-list');
-        episodes.forEach(ep => {
+        episodes.forEach((ep, i) => {
           const div = document.createElement('div');
-          div.innerHTML = `<a href="player.html?video=${encodeURIComponent(ep.videoUrl)}">${ep.title}</a>`;
+          div.innerHTML = `<a href="player.html?serie=${serieIndex}&stagione=${stagioneIndex}&episodio=${i}">${ep.title}</a>`;
           container.appendChild(div);
         });
       });
