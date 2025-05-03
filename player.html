@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Player Video</title>
+</head>
+<body>
+    <h1>Player</h1>
+    <video id="videoPlayer" width="100%" controls autoplay></video>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoUrl = urlParams.get('video');
+        if (videoUrl) {
+            document.getElementById('videoPlayer').src = videoUrl;
+        }
+    </script>
+</body>
+</html>
