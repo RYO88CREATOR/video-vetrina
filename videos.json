@@ -1,0 +1,603 @@
+[
+  {
+    "titolo": "true blood",
+    "copertina": "https://guardaserie.now/uploads/thumb/300x450-0-80/2020-02/1581333502_true-blood.jpg",
+    "stagioni": [
+      {
+        "stagione": 1,
+        "episodi": [
+          {
+            "titolo": "Episodio 1",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXMyYms1bWd1N2VuNy5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1qcGZjeXJpYW1lY3AuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 2",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWRrOGt1NWdmbnRieC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1uZDZ5ZnFpcHQ5dTcuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 3",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWtoNXV5MTVuZWhxMC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC00NmhlaDNxajhkdWYuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 4",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXhnZGtxcTIzMHo0NC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1qM2RsZTVxdXVnZGIuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 5",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWltMzZuZzI2eHhiei5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1ucmp3bDdxNWd0ZzIuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 6",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTIzY2lvczYyZHBvZy5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC02dnJmNWNuZW9kdjIuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 7",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWxyOHp5cGc4YW5yMS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1kMTR1ZGR2d24zcTMuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 8",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXN4eG95OTNuNnZtZC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1zYnFjNjc5cHBlMGIuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 9",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWZtNmx1eDl6Ym5jbS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC0xMml4YXVibnM0NHYuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 10",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLW9vMG5nbXoxMWR5aS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC0yYTEzcG54bXdqeGkuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 11",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTJ6MWM2ZTNjMXh3ai5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC0yNjJ2bGpxd3B6MTQuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 12",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTB2Z2hnYTk2eXpieS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC15bXd6dzI1bW56aTcuaHRtbA=="
+            ]
+          }
+        ]
+      },
+      {
+        "stagione": 2,
+        "episodi": [
+          {
+            "titolo": "Episodio 1",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWdnOGI1NTgxOGNmYS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC05aWEwd3lxMHRlbGMuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 2",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWhmYThieTA2cXN5bC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC02NWo3amMyZjU5cTAuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 3",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXFxNTRxMjlod2d1MC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC02YjdobHh1dzZlY2MuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 4",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLThiNG52dHRzYWZqOC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1jbnNhb28wZWc5cWQuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 5",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTh0dDlqYm9zZjN2MC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1iNWZjY2RhNGc3enMuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 6",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXl6YXRvc3cxZ3Fray5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC16MGc2d2t4YXFjM3EuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 7",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWdjYjVvZHUxMHd1bS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC10enIzOW40MTI0ZzIuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 8",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWZuNDZwajFiYXA4My5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC12aDNnenN4Nmo1bGYuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 9",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTFpeHF1ZjJnMDB3Ny5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1pbzJndjhvZzJsMXQuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 10",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTE4NXVzcmN4bzB1ZC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1idW04dTVrNm03b3IuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 11",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTJ4eHpsOHRtMHMxZi5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC10amU3c2ZveWJ3djUuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 12",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTlucnI0dWlwY29vcC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1qd3dmcmpkMDV1ZTguaHRtbA=="
+            ]
+          }
+        ]
+      },
+      {
+        "stagione": 3,
+        "episodi": [
+          {
+            "titolo": "Episodio 1",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLW1yM3lzNzFuZzgxMi5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1iMXFhZzYwdHRneTAuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 2",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWIwcTh3YTV2OXJnai5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1oZ3R0dzR5dGYweXUuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 3",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXVxbnI4YnB4ZzFsNi5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC02ODF0eW43d21hdHYuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 4",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXA0bHd3NmdqZThyMi5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1jeXdhOThxdnV6YjUuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 5",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWY2ZzIzODNyYmZlNS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1meDNxb2Z1MmRxazUuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 6",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTVodTRjcmhhYmxzZy5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC05emgyYTZrdDB1Y20uaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 7",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWZmam5pNzhscG10eC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC12YXdmbWh5M2trMGcuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 8",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWpnb3QzbzAzeHpsNC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1uZzY3YmF6aWVuMzMuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 9",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTI5NDlhZWNhOHJ6dy5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1tOGFjMXFnMWtvcmYuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 10",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWR6c2U2bHhxcjV6ai5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1tMGZxeWN1Y295dWQuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 11",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXNoNzAzNGxqMndreS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1yZ2lqYXlzbzZxYXouaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 12",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXJvMG45Njl0bTJsbi5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC01c2xmZ2Z6MDVzMW4uaHRtbA=="
+            ]
+          }
+        ]
+      },
+      {
+        "stagione": 4,
+        "episodi": [
+          {
+            "titolo": "Episodio 1",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTNkZXQ4aTU3MnhmYS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1jbzM5N2E5c3ZzOGEuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 2",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTF3czBrNnpkOXhpeS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1zYXg5MGl4ancyaGQuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 3",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWR3MnllYW1ubTcyby5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1rcDhvYjBnYTdwYnMuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 4",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXJncjc2aW0yaHl4NS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1jZjJyZXk5eWVrb3MuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 5",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXBqZGJwMjV2aW1lYi5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC04cHAxZnMwdGF4NDQuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 6",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTlxOTNoNmRhYTNicC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1vejdidjJ3dmx1cGIuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 7",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTlycXdnN210NDlvei5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC12amRjanFkZG5iNzIuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 8",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTlrMndpdHBpb3M3ci5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC13eHE5Y21tbGxxeWwuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 9",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWpsaWtpMmcxdTZkeS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC11Y20xMmYxdnBubjEuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 10",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLW1qdTdmbmZ5bmt5aC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC13Y2R3NzBwejF1dGsuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 11",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXc0aWk3aDZzaDByaC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1jcTZkcmUyZzV2OHEuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 12",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXY0MzkzeW16OHk2MC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1rbXhhd2Y3aXRvbjQuaHRtbA=="
+            ]
+          }
+        ]
+      },
+      {
+        "stagione": 5,
+        "episodi": [
+          {
+            "titolo": "Episodio 1",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWJpbTJycGphd2Jzbi5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC12aGJxanZkbTh4NG4uaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 2",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWd0amxiZ2Fsa2loby5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1lNzB5MDlsdWVqZGwuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 3",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTJhbjd5NGFsdDY2cC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC13encybGh6OWpuMGMuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 4",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWg3OWIyc3doeHBiNi5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC13NXNhNjdmbmI0MnAuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 5",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWJzbnZnb2Z6aG5mcy5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC03bTBvMWNtaWxiN2UuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 6",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTFycDc5d3EwcGFjby5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC13cDR6cXZmZ3hsMjguaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 7",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWdrcHowdGo2b2c0Yy5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC04OTUybHYzaHQwcmEuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 8",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXIwdGs2ZGZpbXhucC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1uZzR5NWd5MjJsZDYuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 9",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLW5haHN6MWR5bjg3My5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC13Y2RtZno5eDF0YTUuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 10",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWx0b3FjdzFuMHVndS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC0yNWV1emU1ZnFlODIuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 11",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWx4aXFpc2wwdzE4Yi5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1xamtmMmRveDIxcnouaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 12",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWRxb2tpbnY4MzJyYS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1pYmpsYXRlYmxqZDguaHRtbA=="
+            ]
+          }
+        ]
+      },
+      {
+        "stagione": 6,
+        "episodi": [
+          {
+            "titolo": "Episodio 1",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXVibjVxY3Rha3pxMC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1jYzE2ZWRuZXBidGIuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 2",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWoxd2hheTBpa2xkdS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1oamJuNjJrNm81OTMuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 3",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTVrY3Izemwzd2d0ei5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1zOGUwZ3N6eGptd3MuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 4",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTM4MWtqdnBkb3NhbS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1lM2VrOTlxeXpoYW4uaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 5",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWNkem5hbzhseXJvYi5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1rbXg5aHVrang3YW4uaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 6",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWJ1aWI5OXp4cGEyYy5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC04Y2dydmwzcjMzOGEuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 7",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXN0bnM5cGV2NGE4cy5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1pam51cmV1MjdrOXouaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 8",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTQyeGczZzE2a2xtbi5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC0zb2xrbXYzaDNzeDEuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 9",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWJwcWx3dW10eGJyby5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC12ZzRsbWZheXBkNTQuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 10",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTR3NjUxbXpzdGV2dy5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1xbjFuYWlvd3ppbTguaHRtbA=="
+            ]
+          }
+        ]
+      },
+      {
+        "stagione": 7,
+        "episodi": [
+          {
+            "titolo": "Episodio 1",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLXBkMnJtMTEyODVuNS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1ia2x5MmtvenIzdXMuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 2",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTVhemxjc2UzN3dnMS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC0zbnB5dTdiaTV5NWEuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 3",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLW9vb2JhZjR5MjJpZC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1qaGJrMDA1MGJ5cjUuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 4",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTR3dXMzcnd3Z2RwMS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC05MTNoMDFrZDdpNzEuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 5",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWk3M3Z0bHdjazl4bS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1yNjFja3poZGF6Y2guaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 6",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWhtZmYzYjVpb3d4Zi5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC0yOGY1YmJwMm9hMzIuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 7",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLWxkaWl1ZnRwYmYzbS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1tZnNyaWpwcWs3Y3guaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 8",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLThrM2dub2FwdWYyZC5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC0wYjJ5OGI3ZGZod3IuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 9",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLW4xc2R4eHdjeTgwZi5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC0yMGhxNTRjbHJ0ejIuaHRtbA=="
+            ]
+          },
+          {
+            "titolo": "Episodio 10",
+            "fonti": [
+              "aHR0cHM6Ly9zdXBlcnZpZGVvLmNjL2VtYmVkLTB4NWduZTVsZXNvbS5odG1s",
+              "aHR0cHM6Ly9kcm9wbG9hZC5pby9lbWJlZC1hYW8wZGluY284ZXQuaHRtbA=="
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
