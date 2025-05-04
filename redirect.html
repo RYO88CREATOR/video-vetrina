@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    function decodeBase64(str) {
+      try {
+        return atob(str);
+      } catch (e) {
+        return null;
+      }
+    }
+
+    window.onload = function () {
+      const params = new URLSearchParams(window.location.search);
+      const encodedUrl = params.get('url');
+      const decodedUrl = decodeBase64(encodedUrl);
+
+      if (decodedUrl) {
+        window.location.href = decodedUrl;
+      } else {
+        document.body.innerHTML = "Errore: URL non valido.";
+      }
+    }
+  </script>
+</head>
+<body>
+  <p>Reindirizzamento in corso...</p>
+</body>
+</html>
