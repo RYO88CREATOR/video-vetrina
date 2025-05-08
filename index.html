@@ -44,29 +44,33 @@
       display: flex;
       flex-wrap: nowrap;
       overflow-x: auto;
-      gap: 8px; /* Ridotto il gap per schermi piccoli */
-      padding: 0.5rem; /* Ridotto il padding */
+      gap: 8px;
+      padding: 0.5rem;
     }
     .serie-card {
       flex: 0 0 auto;
-      width: 120px; /* Ridotta la larghezza delle card */
+      width: 120px;
       background-color: #1e1e1e;
-      border-radius: 8px; /* Bordi leggermente meno arrotondati */
-      padding: 6px; /* Ridotto il padding interno */
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3); /* Ombra più leggera */
+      border-radius: 8px;
+      padding: 6px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
       cursor: pointer;
+      display: flex; /* Usiamo flexbox per disporre immagine e titolo verticalmente */
+      flex-direction: column; /* Elementi disposti in colonna */
+      align-items: center; /* Centra gli elementi orizzontalmente */
+      text-align: center; /* Allinea il testo del titolo al centro */
     }
     .serie-card img {
       width: 100%;
-      border-radius: 4px; /* Bordi meno arrotondati per le immagini */
+      border-radius: 4px;
+      margin-bottom: 0.3rem; /* Aggiungiamo un po' di spazio tra l'immagine e il titolo */
     }
     .serie-card h2 {
-      font-size: 0.9rem; /* Titolo più piccolo */
-      margin: 0.3rem 0;
-      text-align: center;
+      font-size: 0.9rem;
+      margin: 0; /* Rimuoviamo il margine predefinito sopra e sotto */
     }
 
-    /* Stili per la "tendina" di dettaglio (ottimizzati per smartphone) */
+    /* Stili per la "tendina" di dettaglio */
     .dettaglio-container {
       display: none;
       position: fixed;
@@ -74,82 +78,82 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.9); /* Sfondo più scuro e opaco */
+      background-color: rgba(0, 0, 0, 0.9);
       z-index: 10;
       overflow-y: auto;
-      padding: 1rem; /* Ridotto il padding esterno */
+      padding: 1rem;
     }
     .dettaglio-serie {
       background-color: #1e1e1e;
-      border-radius: 8px; /* Bordi meno arrotondati */
-      padding: 0.8rem; /* Ridotto il padding interno */
-      max-width: 95%; /* Larghezza massima più vicina al bordo */
-      margin: 1rem auto; /* Margini ridotti */
+      border-radius: 8px;
+      padding: 0.8rem;
+      max-width: 95%;
+      margin: 1rem auto;
       color: #eee;
       position: relative;
     }
     .dettaglio-serie img {
-      width: 80px; /* Immagine più piccola */
-      border-radius: 4px; /* Bordi meno arrotondati */
+      width: 80px;
+      border-radius: 4px;
       float: left;
-      margin-right: 0.5rem; /* Margine ridotto */
+      margin-right: 0.5rem;
     }
     .dettaglio-serie h2 {
-      font-size: 1.2rem; /* Titolo più piccolo */
+      font-size: 1.2rem;
       margin-top: 0;
     }
     .dettaglio-serie .stagione {
-      margin-top: 0.8rem; /* Margine ridotto */
+      margin-top: 0.8rem;
       border-top: 1px solid #333;
-      padding-top: 0.8rem; /* Padding ridotto */
+      padding-top: 0.8rem;
     }
     .dettaglio-serie .stagione h3 {
-      font-size: 1rem; /* Titolo stagione più piccolo */
+      font-size: 1rem;
       margin-bottom: 0.3rem;
-      cursor: pointer; /* Indica che è cliccabile */
+      cursor: pointer;
       display: flex;
       justify-content: flex-start;
       align-items: center;
     }
     .dettaglio-serie .stagione h3::after {
-      content: "+"; /* Simbolo di espansione */
+      content: "+";
       font-size: 1rem;
-      margin-left: 0.5em; /* Aggiungiamo un margine a sinistra */
+      margin-left: 0.5em;
     }
     .dettaglio-serie .stagione.aperta h3::after {
-      content: "-"; /* Simbolo di chiusura */
-      margin-left: 0.5em; /* Applichiamo lo stesso margine */
+      content: "-";
+      margin-left: 0.5em;
     }
     .dettaglio-serie .episodi {
-      display: none; /* Nascosti di default */
+      display: none;
       padding-left: 0.5rem;
     }
     .dettaglio-serie .episodio button {
       background-color: #333;
       color: white;
       border: none;
-      padding: 4px 8px; /* Padding ridotto per i bottoni */
-      margin: 3px 3px 0 0; /* Margini ridotti per i bottoni */
-      border-radius: 4px; /* Bordi meno arrotondati */
+      padding: 4px 8px;
+      margin: 3px 3px 0 0;
+      border-radius: 4px;
       cursor: pointer;
-      font-size: 0.75rem; /* Testo dei bottoni più piccolo */
+      font-size: 0.75rem;
       display: inline-block;
     }
     .dettaglio-serie .episodio p {
-      margin-bottom: 0.2rem; /* Margine ridotto per i paragrafi */
-      font-size: 0.85rem; /* Testo degli episodi più piccolo */
+      margin-bottom: 0.2rem;
+      font-size: 0.85rem;
     }
     .bottone-chiudi {
       position: absolute;
-      top: 0.3rem; /* Posizione più vicina al bordo */
-      right: 0.3rem; /* Posizione più vicina al bordo */
+      top: 0.3rem;
+      right: 0.3rem;
       background: none;
       color: #eee;
       border: none;
-      font-size: 1.2rem; /* Dimensione ridotta */
+      font-size: 1.2rem;
       cursor: pointer;
-      padding: 0; /* Rimosso il padding interno */
-      line-height: 1; /* Allineamento del testo */
+      padding: 0;
+      line-height: 1;
     }
     .bottone-chiudi:hover {
       color: #f0f0f0;
@@ -157,19 +161,19 @@
     .bottone-home {
       position: absolute;
       top: 0.3rem;
-      left: 0.3rem;
-      background-color: #333;
-      color: #eee;
+      right: 4rem; /* Spostiamo il bottone a destra */
+      background-color: #eee; /* Sfondo bianco */
+      color: #121212; /* Scritta nera */
       border: none;
       padding: 0.5rem 1rem;
       border-radius: 4px;
       cursor: pointer;
       font-size: 0.9rem;
-      z-index: 11; /* Assicura che sia sopra gli altri elementi */
+      z-index: 11;
     }
 
     .bottone-home:hover {
-      background-color: #555;
+      background-color: #f0f0f0;
     }
     .clear-fix {
       clear: both;
@@ -238,9 +242,9 @@
             serieCards.forEach(card => {
               const titoloSerie = card.querySelector("h2").textContent.toLowerCase();
               if (titoloSerie.includes(testoRicerca)) {
-                card.style.display = "flex"; // Mostra la card se il titolo corrisponde
+                card.style.display = "flex";
               } else {
-                card.style.display = "none"; // Nascondi la card se non corrisponde
+                card.style.display = "none";
               }
             });
           });
