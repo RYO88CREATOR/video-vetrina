@@ -7,321 +7,289 @@
   <style>
     body {
       font-family: sans-serif;
-      background-color: #121212;
-      color: #eee;
       margin: 0;
-      padding: 0.5rem;
-    }
-    h1 {
-      text-align: center;
-      color: #f0f0f0;
-    }
-    .barra-ricerca-container {
-      background-color: #1e1e1e;
-      padding: 0.8rem;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-      display: flex;
-      justify-content: center;
+      background-color: #f0f0f0;
     }
 
     #barraRicerca {
-      padding: 0.6rem;
+      width: 100%;
+      padding: 15px;
+      font-size: 1.2em;
+      box-sizing: border-box;
       border: none;
-      border-radius: 4px;
-      background-color: #333;
-      color: #eee;
-      width: 80%;
-      max-width: 600px;
-      font-size: 0.9rem;
+      border-bottom: 1px solid #ccc;
     }
 
-    #barraRicerca::placeholder {
-      color: #777;
-    }
-    .serie-container {
+    #catalogo {
       display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      gap: 8px;
-      padding: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      padding: 16px;
     }
+
     .serie-card {
-      flex: 0 0 auto;
-      width: 120px;
-      background-color: #1e1e1e;
-      border-radius: 8px;
-      padding: 6px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      width: 160px;
       cursor: pointer;
-      display: flex; /* Usiamo flexbox per disporre immagine e titolo verticalmente */
-      flex-direction: column; /* Elementi disposti in colonna */
-      align-items: center; /* Centra gli elementi orizzontalmente */
-      text-align: center; /* Allinea il testo del titolo al centro */
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
+    .serie-card:hover {
+      transform: scale(1.05);
+    }
+
     .serie-card img {
       width: 100%;
-      border-radius: 4px;
-      margin-bottom: 0.3rem; /* Aggiungiamo un po' di spazio tra l'immagine e il titolo */
-    }
-    .serie-card h2 {
-      font-size: 0.9rem;
-      margin: 0; /* Rimuoviamo il margine predefinito sopra e sotto */
+      height: auto;
+      pointer-events: none;
+      user-select: none;
     }
 
-    /* Stili per la "tendina" di dettaglio */
-    .dettaglio-container {
+    .serie-card h2 {
+      margin: 10px;
+      font-size: 1em;
+      text-align: center;
+    }
+
+    #dettaglioSerieContainer {
       display: none;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
-      z-index: 10;
       overflow-y: auto;
-      padding: 1rem;
-    }
-    .dettaglio-serie {
-      background-color: #1e1e1e;
-      border-radius: 8px;
-      padding: 0.8rem;
-      max-width: 95%;
-      margin: 1rem auto;
-      color: #eee;
-      position: relative;
-    }
-    .dettaglio-serie img {
-      width: 80px;
-      border-radius: 4px;
-      float: left;
-      margin-right: 0.5rem;
-    }
-    .dettaglio-serie h2 {
-      font-size: 1.2rem;
-      margin-top: 0;
-    }
-    .dettaglio-serie .stagione {
-      margin-top: 0.8rem;
-      border-top: 1px solid #333;
-      padding-top: 0.8rem;
-    }
-    .dettaglio-serie .stagione h3 {
-      font-size: 1rem;
-      margin-bottom: 0.3rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-    }
-    .dettaglio-serie .stagione h3::after {
-      content: "+";
-      font-size: 1rem;
-      margin-left: 0.5em;
-    }
-    .dettaglio-serie .stagione.aperta h3::after {
-      content: "-";
-      margin-left: 0.5em;
-    }
-    .dettaglio-serie .episodi {
-      display: none;
-      padding-left: 0.5rem;
-    }
-    .dettaglio-serie .episodio button {
-      background-color: #333;
-      color: white;
-      border: none;
-      padding: 4px 8px;
-      margin: 3px 3px 0 0;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.75rem;
-      display: inline-block;
-    }
-    .dettaglio-serie .episodio p {
-      margin-bottom: 0.2rem;
-      font-size: 0.85rem;
-    }
-    .bottone-chiudi {
-      position: absolute;
-      top: 0.3rem;
-      right: 0.3rem;
-      background: none;
-      color: #eee;
-      border: none;
-      font-size: 1.2rem;
-      cursor: pointer;
-      padding: 0;
-      line-height: 1;
-    }
-    .bottone-chiudi:hover {
-      color: #f0f0f0;
-    }
-    .bottone-home {
-      position: absolute;
-      top: 0.3rem;
-      right: 4rem; /* Spostiamo il bottone a destra */
-      background-color: #eee; /* Sfondo bianco */
-      color: #121212; /* Scritta nera */
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      z-index: 11;
+      background-color: rgba(0,0,0,0.85);
+      z-index: 10;
+      padding: 20px;
+      box-sizing: border-box;
     }
 
-    .bottone-home:hover {
-      background-color: #f0f0f0;
+    #dettaglioSerie {
+      background-color: white;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 8px;
     }
-    .clear-fix {
-      clear: both;
+
+    #dettaglioCopertina {
+      width: 160px;
+      float: left;
+      margin-right: 20px;
+    }
+
+    #dettaglioTitolo {
+      font-size: 1.5em;
+      margin-top: 0;
+    }
+
+    .stagione {
+      margin-top: 20px;
+    }
+
+    .stagione h3 {
+      cursor: pointer;
+      margin-bottom: 5px;
+    }
+
+    .episodi {
+      display: none;
+      padding-left: 20px;
+    }
+
+    .stagione.aperta .episodi {
+      display: block;
+    }
+
+    .episodio {
+      margin-bottom: 10px;
+    }
+
+    .episodio button {
+      margin-right: 5px;
+    }
+
+    #chiudiDettaglio {
+      display: block;
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    #bottoneHome {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 10px 15px;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      z-index: 11;
+      cursor: pointer;
+    }
+
+    .button {
+      padding: 5px 10px;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #666;
     }
   </style>
 </head>
 <body>
-  <div class="barra-ricerca-container">
-    <input type="text" id="barraRicerca" placeholder="Cerca serie...">
+
+<input type="text" id="barraRicerca" placeholder="Cerca una serie..."/>
+<div id="catalogo"></div>
+
+<div id="dettaglioSerieContainer">
+  <div id="dettaglioSerie">
+    <img id="dettaglioCopertina" src="" alt="Copertina" draggable="false" oncontextmenu="return false">
+    <h2 id="dettaglioTitolo"></h2>
+    <div id="dettaglioStagioni"></div>
+    <div id="chiudiDettaglio"><button class="button">Chiudi</button></div>
   </div>
-  <h1>Catalogo Serie</h1>
-  <div id="catalogo" class="serie-container"></div>
+</div>
 
-  <div id="dettaglioSerieContainer" class="dettaglio-container">
-    <div id="dettaglioSerie" class="dettaglio-serie">
-      <button id="bottoneHome" class="bottone-home">Home</button>
-      <button id="chiudiDettaglio" class="bottone-chiudi">&times;</button>
-      <img id="dettaglioCopertina" src="" alt="Copertina">
-      <h2 id="dettaglioTitolo"></h2>
-      <div id="dettaglioStagioni"></div>
-      <div class="clear-fix"></div>
-    </div>
-  </div>
+<button id="bottoneHome">Home</button>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const barraRicerca = document.getElementById("barraRicerca");
-      const catalogo = document.getElementById("catalogo");
-      const dettaglioContainer = document.getElementById("dettaglioSerieContainer");
-      const dettaglioCopertina = document.getElementById("dettaglioCopertina");
-      const dettaglioTitolo = document.getElementById("dettaglioTitolo");
-      const dettaglioStagioni = document.getElementById("dettaglioStagioni");
-      const chiudiDettaglio = document.getElementById("chiudiDettaglio");
-      const bottoneHome = document.getElementById("bottoneHome");
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const barraRicerca = document.getElementById("barraRicerca");
+    const catalogo = document.getElementById("catalogo");
+    const dettaglioContainer = document.getElementById("dettaglioSerieContainer");
+    const dettaglioCopertina = document.getElementById("dettaglioCopertina");
+    const dettaglioTitolo = document.getElementById("dettaglioTitolo");
+    const dettaglioStagioni = document.getElementById("dettaglioStagioni");
+    const chiudiDettaglio = document.getElementById("chiudiDettaglio");
+    const bottoneHome = document.getElementById("bottoneHome");
 
-      let serieData;
+    let serieData;
 
-      fetch("videos.json")
-        .then(res => res.json())
-        .then(data => {
-          serieData = data;
-          data.forEach((serie, index) => {
-            const card = document.createElement("div");
-            card.className = "serie-card";
-            card.dataset.serieIndex = index;
+    fetch("videos.json")
+      .then(res => res.json())
+      .then(data => {
+        serieData = data;
+        data.forEach((serie, index) => {
+          const card = document.createElement("div");
+          card.className = "serie-card";
+          card.dataset.serieIndex = index;
 
-            const img = document.createElement("img");
-            img.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
-            img.alt = serie.titolo;
+          const img = document.createElement("img");
+          img.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
+          img.alt = serie.titolo;
+          img.setAttribute("oncontextmenu", "return false");
+          img.setAttribute("draggable", "false");
 
-            const titolo = document.createElement("h2");
-            titolo.textContent = serie.titolo;
+          const titolo = document.createElement("h2");
+          titolo.textContent = serie.titolo;
 
-            card.appendChild(img);
-            card.appendChild(titolo);
-            catalogo.appendChild(card);
+          card.appendChild(img);
+          card.appendChild(titolo);
+          catalogo.appendChild(card);
 
-            card.addEventListener("click", () => mostraDettaglioSerie(index));
-          });
-
-          // Funzionalità di ricerca
-          barraRicerca.addEventListener("input", (e) => {
-            const testoRicerca = e.target.value.toLowerCase();
-            const serieCards = document.querySelectorAll(".serie-card");
-
-            serieCards.forEach(card => {
-              const titoloSerie = card.querySelector("h2").textContent.toLowerCase();
-              if (titoloSerie.includes(testoRicerca)) {
-                card.style.display = "flex";
-              } else {
-                card.style.display = "none";
-              }
-            });
-          });
-
-        })
-        .catch(err => {
-          catalogo.textContent = "Errore nel caricamento del catalogo.";
-          console.error("Errore JSON:", err);
+          card.addEventListener("click", () => mostraDettaglioSerie(index));
         });
 
-      function mostraDettaglioSerie(index) {
-        const serie = serieData[index];
-        dettaglioCopertina.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
-        dettaglioTitolo.textContent = serie.titolo;
-        dettaglioStagioni.innerHTML = "";
+        barraRicerca.addEventListener("input", (e) => {
+          const testoRicerca = e.target.value.toLowerCase();
+          const serieCards = document.querySelectorAll(".serie-card");
 
-        serie.stagioni.forEach(st => {
-          const stagioneDiv = document.createElement("div");
-          stagioneDiv.className = "stagione";
-
-          const stagioneTitolo = document.createElement("h3");
-          stagioneTitolo.textContent = `Stagione ${st.stagione}`;
-          stagioneDiv.appendChild(stagioneTitolo);
-
-          const episodiDiv = document.createElement("div");
-          episodiDiv.className = "episodi";
-
-          st.episodi.forEach(ep => {
-            const episodioDiv = document.createElement("div");
-            episodioDiv.className = "episodio";
-
-            const epTitle = document.createElement("p");
-            epTitle.textContent = ep.titolo;
-            episodioDiv.appendChild(epTitle);
-
-            const fontiFiltrate = [...new Set(ep.fonti.filter(f => f.includes("http") && !f.includes("index.html")))];
-
-            fontiFiltrate.forEach((fonte, idx) => {
-              const fonteBtn = document.createElement("button");
-              fonteBtn.className = "button";
-              fonteBtn.textContent = `Fonte ${idx + 1}`;
-              fonteBtn.addEventListener("click", () => {
-                window.open(fonte, "_blank");
-              });
-              episodioDiv.appendChild(fonteBtn);
-            });
-
-            episodiDiv.appendChild(episodioDiv);
-          });
-
-          stagioneDiv.appendChild(episodiDiv);
-          dettaglioStagioni.appendChild(stagioneDiv);
-
-          // Aggiungi l'event listener per espandere/chiudere gli episodi
-          stagioneTitolo.addEventListener("click", () => {
-            episodiDiv.style.display = episodiDiv.style.display === "block" ? "none" : "block";
-            stagioneDiv.classList.toggle("aperta");
+          serieCards.forEach(card => {
+            const titoloSerie = card.querySelector("h2").textContent.toLowerCase();
+            card.style.display = titoloSerie.includes(testoRicerca) ? "flex" : "none";
           });
         });
 
-        dettaglioContainer.style.display = "block";
-      }
-
-      chiudiDettaglio.addEventListener("click", () => {
-        dettaglioContainer.style.display = "none";
+      })
+      .catch(err => {
+        catalogo.textContent = "Errore nel caricamento del catalogo.";
+        console.error("Errore JSON:", err);
       });
 
-      bottoneHome.addEventListener("click", () => {
-        dettaglioContainer.style.display = "none";
+    function mostraDettaglioSerie(index) {
+      const serie = serieData[index];
+      dettaglioCopertina.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
+      dettaglioCopertina.setAttribute("oncontextmenu", "return false");
+      dettaglioCopertina.setAttribute("draggable", "false");
+
+      dettaglioTitolo.textContent = serie.titolo;
+      dettaglioStagioni.innerHTML = "";
+
+      serie.stagioni.forEach(st => {
+        const stagioneDiv = document.createElement("div");
+        stagioneDiv.className = "stagione";
+
+        const stagioneTitolo = document.createElement("h3");
+        stagioneTitolo.textContent = `Stagione ${st.stagione}`;
+        stagioneDiv.appendChild(stagioneTitolo);
+
+        const episodiDiv = document.createElement("div");
+        episodiDiv.className = "episodi";
+
+        st.episodi.forEach(ep => {
+          const episodioDiv = document.createElement("div");
+          episodioDiv.className = "episodio";
+
+          const epTitle = document.createElement("p");
+          epTitle.textContent = ep.titolo;
+          episodioDiv.appendChild(epTitle);
+
+          const fontiFiltrate = [...new Set(ep.fonti.filter(f => f.includes("http") && !f.includes("index.html")))];
+
+          fontiFiltrate.forEach((fonte, idx) => {
+            const fonteBtn = document.createElement("button");
+            fonteBtn.className = "button";
+            fonteBtn.textContent = `Fonte ${idx + 1}`;
+            fonteBtn.addEventListener("click", () => {
+              window.open(fonte, "_blank");
+            });
+            episodioDiv.appendChild(fonteBtn);
+          });
+
+          episodiDiv.appendChild(episodioDiv);
+        });
+
+        stagioneDiv.appendChild(episodiDiv);
+        dettaglioStagioni.appendChild(stagioneDiv);
+
+        stagioneTitolo.addEventListener("click", () => {
+          episodiDiv.style.display = episodiDiv.style.display === "block" ? "none" : "block";
+          stagioneDiv.classList.toggle("aperta");
+        });
       });
 
-      window.addEventListener("click", (event) => {
-        if (event.target === dettaglioContainer) {
-          dettaglioContainer.style.display = "none";
-        }
-      });
+      dettaglioContainer.style.display = "block";
+    }
+
+    chiudiDettaglio.addEventListener("click", () => {
+      dettaglioContainer.style.display = "none";
     });
-  </script>
+
+    bottoneHome.addEventListener("click", () => {
+      dettaglioContainer.style.display = "none";
+    });
+
+    window.addEventListener("click", (event) => {
+      if (event.target === dettaglioContainer) {
+        dettaglioContainer.style.display = "none";
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
