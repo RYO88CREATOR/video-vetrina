@@ -39,7 +39,7 @@
       font-size: 1rem;
       margin: 0.5rem 0;
     }
-    button {
+    .button {
       background-color: #333;
       color: white;
       border: none;
@@ -52,12 +52,10 @@
     .stagione, .episodio {
       margin-left: 8px;
       margin-top: 4px;
+      display: none;
     }
     .episodio button {
       margin: 2px 4px 4px 0;
-    }
-    .stagione, .episodio {
-      display: none;
     }
   </style>
 </head>
@@ -66,72 +64,86 @@
   <div id="catalogo" class="serie-container"></div>
 
   <script>
-    fetch("videos.json")
-      .then(res => res.json())
-      .then(data => {
-        const catalogo = document.getElementById("catalogo");
+    document.addEventListener("DOMContentLoaded", () => {
+      fetch("videos.json")
+        .then(res => res.json())
+        .then(data => {
+          const catalogo = document.getElementById("catalogo");
 
-        data.forEach(serie => {
-          const card = document.createElement("div");
-          card.className = "serie";
+          data.forEach(serie => {
+            const card = document.createElement("div");
+            card.className = "serie";
 
-          const img = document.createElement("img");
-          img.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
+            const img = document.createElement("img");
+            img.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
 
-          const titolo = document.createElement("h2");
-          titolo.textContent = serie.titolo;
+            const titolo = document.createElement("h2");
+            titolo.textContent = serie.titolo;
 
-          const toggleBtn = document.createElement("button");
-          toggleBtn.textContent = "Mostra Stagioni";
-          toggleBtn.onclick = () => {
-            const stagioniDivs = card.querySelectorAll(".stagione");
-            stagioniDivs.forEach(div => div.style.display = div.style.display === "none" ? "block" : "none");
-            toggleBtn.textContent = toggleBtn.textContent === "Mostra Stagioni" ? "Nascondi Stagioni" : "Mostra Stagioni";
-          };
+            const toggleStagioni = document.createElement("button");
+            toggleStagioni.className = "button";
+            toggleStagioni.textContent = "Mostra Stagioni";
 
-          card.appendChild(img);
-          card.appendChild(titolo);
-          card.appendChild(toggleBtn);
-
-          serie.stagioni.forEach(st => {
-            const stagioneDiv = document.createElement("div");
-            stagioneDiv.className = "stagione";
-            const stButton = document.createElement("button");
-            stButton.textContent = `Stagione ${st.stagione}`;
-            stButton.onclick = () => {
-              const episodi = stagioneDiv.querySelectorAll(".episodio");
-              episodi.forEach(e => e.style.display = e.style.display === "none" ? "block" : "none");
-              stButton.textContent = stButton.textContent.includes("Mostra") ? `Stagione ${st.stagione}` : `Stagione ${st.stagione}`;
-            };
-            stagioneDiv.appendChild(stButton);
-
-            st.episodi.forEach(ep => {
-              const epDiv = document.createElement("div");
-              epDiv.className = "episodio";
-              const epTitle = document.createElement("p");
-              epTitle.textContent = ep.titolo;
-              epDiv.appendChild(epTitle);
-
-              ep.fonti.forEach((fonte, idx) => {
-                const fonteBtn = document.createElement("button");
-                fonteBtn.textContent = `Fonte ${idx + 1}`;
-                fonteBtn.onclick = () => window.open(fonte, "_blank");
-                epDiv.appendChild(fonteBtn);
-              });
-
-              stagioneDiv.appendChild(epDiv);
+            toggleStagioni.addEventListener("click", () => {
+              const stagioniDivs = card.querySelectorAll(".stagione");
+              stagioniDivs.forEach(div => div.style.display = div.style.display === "none" ? "block" : "none");
+              toggleStagioni.textContent = toggleStagioni.textContent === "Mostra Stagioni" ? "Nascondi Stagioni" : "Mostra Stagioni";
             });
 
-            card.appendChild(stagioneDiv);
-          });
+            card.appendChild(img);
+            card.appendChild(titolo);
+            card.appendChild(toggleStagioni);
 
-          catalogo.appendChild(card);
+            serie.stagioni.forEach(st => {
+              const stagioneDiv = document.createElement("div");
+              stagioneDiv.className = "stagione";
+
+              const toggleEpisodi = document.createElement("button");
+              toggleEpisodi.className = "button";
+              toggleEpisodi.textContent = `Stagione ${st.stagione}`;
+
+              toggleEpisodi.addEventListener("click", () => {
+                const episodi = stagioneDiv.querySelectorAll(".episodio");
+                episodi.forEach(e => e.style.display = e.style.display === "none" ? "block" : "none");
+              });
+
+              stagioneDiv.appendChild(toggleEpisodi);
+
+              st.episodi.forEach(ep => {
+                const epDiv = document.createElement("div");
+                epDiv.className = "episodio";
+
+                const epTitle = document.createElement("p");
+                epTitle.textContent = ep.titolo;
+                epDiv.appendChild(epTitle);
+
+                // Filtra link validi ed evita duplicati e link tipo index.html
+                const fontiFiltrate = [...new Set(ep.fonti.filter(f => f.includes("http") && !f.includes("index.html")))];
+
+                fontiFiltrate.forEach((fonte, idx) => {
+                  const fonteBtn = document.createElement("button");
+                  fonteBtn.className = "button";
+                  fonteBtn.textContent = `Fonte ${idx + 1}`;
+                  fonteBtn.addEventListener("click", () => {
+                    window.open(fonte, "_blank");
+                  });
+                  epDiv.appendChild(fonteBtn);
+                });
+
+                stagioneDiv.appendChild(epDiv);
+              });
+
+              card.appendChild(stagioneDiv);
+            });
+
+            catalogo.appendChild(card);
+          });
+        })
+        .catch(err => {
+          document.getElementById("catalogo").textContent = "Errore nel caricamento del catalogo.";
+          console.error("Errore JSON:", err);
         });
-      })
-      .catch(err => {
-        document.getElementById("catalogo").textContent = "Errore nel caricamento del catalogo.";
-        console.error("Errore JSON:", err);
-      });
+    });
   </script>
 </body>
 </html>
