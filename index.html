@@ -23,39 +23,95 @@
       gap: 12px;
       padding: 1rem 0.5rem;
     }
-    .serie {
+    .serie-card {
       flex: 0 0 auto;
       width: 160px;
       background-color: #1e1e1e;
       border-radius: 10px;
       padding: 8px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      cursor: pointer;
     }
-    .serie img {
+    .serie-card img {
       width: 100%;
       border-radius: 6px;
     }
-    .serie h2 {
+    .serie-card h2 {
       font-size: 1rem;
       margin: 0.5rem 0;
+      text-align: center;
     }
-    .button {
+
+    /* Stili per la "tendina" di dettaglio */
+    .dettaglio-container {
+      display: none; /* Inizialmente nascosto */
+      position: fixed; /* Sovrappone il contenuto */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8); /* Sfondo semi-trasparente */
+      z-index: 10; /* Assicura che sia sopra gli altri elementi */
+      overflow-y: auto; /* Permette lo scrolling se il contenuto è lungo */
+      padding: 2rem;
+    }
+    .dettaglio-serie {
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      padding: 1rem;
+      max-width: 600px;
+      margin: 2rem auto; /* Centra la "tendina" */
+      color: #eee;
+      position: relative; /* Per posizionare il pulsante di chiusura */
+    }
+    .dettaglio-serie img {
+      width: 120px;
+      border-radius: 6px;
+      float: left;
+      margin-right: 1rem;
+    }
+    .dettaglio-serie h2 {
+      font-size: 1.5rem;
+      margin-top: 0;
+    }
+    .dettaglio-serie .stagione {
+      margin-top: 1rem;
+      border-top: 1px solid #333;
+      padding-top: 1rem;
+    }
+    .dettaglio-serie .stagione h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .dettaglio-serie .episodio button {
       background-color: #333;
       color: white;
       border: none;
       padding: 6px 10px;
-      margin: 5px 0;
+      margin: 5px 5px 0 0;
       border-radius: 6px;
       cursor: pointer;
       font-size: 0.85rem;
+      display: inline-block;
     }
-    .stagione, .episodio {
-      margin-left: 8px;
-      margin-top: 4px;
-      display: none;
+    .dettaglio-serie .episodio p {
+      margin-bottom: 0.3rem;
     }
-    .episodio button {
-      margin: 2px 4px 4px 0;
+    .bottone-chiudi {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: none;
+      color: #eee;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .bottone-chiudi:hover {
+      color: #f0f0f0;
+    }
+    .clear-fix {
+      clear: both;
     }
   </style>
 </head>
@@ -63,89 +119,110 @@
   <h1>Catalogo Serie</h1>
   <div id="catalogo" class="serie-container"></div>
 
+  <div id="dettaglioSerieContainer" class="dettaglio-container">
+    <div id="dettaglioSerie" class="dettaglio-serie">
+      <button id="chiudiDettaglio" class="bottone-chiudi">&times;</button>
+      <img id="dettaglioCopertina" src="" alt="Copertina">
+      <h2 id="dettaglioTitolo"></h2>
+      <div id="dettaglioStagioni"></div>
+      <div class="clear-fix"></div>
+    </div>
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      const catalogo = document.getElementById("catalogo");
+      const dettaglioContainer = document.getElementById("dettaglioSerieContainer");
+      const dettaglioCopertina = document.getElementById("dettaglioCopertina");
+      const dettaglioTitolo = document.getElementById("dettaglioTitolo");
+      const dettaglioStagioni = document.getElementById("dettaglioStagioni");
+      const chiudiDettaglio = document.getElementById("chiudiDettaglio");
+
+      let serieData; // Variabile per memorizzare i dati delle serie
+
       fetch("videos.json")
         .then(res => res.json())
         .then(data => {
-          const catalogo = document.getElementById("catalogo");
-
-          data.forEach(serie => {
+          serieData = data; // Salva i dati
+          data.forEach((serie, index) => {
             const card = document.createElement("div");
-            card.className = "serie";
+            card.className = "serie-card";
+            card.dataset.serieIndex = index; // Memorizza l'indice per recuperare i dettagli
 
             const img = document.createElement("img");
             img.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
+            img.alt = serie.titolo;
 
             const titolo = document.createElement("h2");
             titolo.textContent = serie.titolo;
 
-            const toggleStagioni = document.createElement("button");
-            toggleStagioni.className = "button";
-            toggleStagioni.textContent = "Mostra Stagioni";
-
-            toggleStagioni.addEventListener("click", () => {
-              const stagioniDivs = card.querySelectorAll(".stagione");
-              stagioniDivs.forEach(div => {
-                div.style.display = div.style.display === "block" ? "none" : "block";
-              });
-              toggleStagioni.textContent = toggleStagioni.textContent === "Mostra Stagioni" ? "Nascondi Stagioni" : "Mostra Stagioni";
-            });
-
             card.appendChild(img);
             card.appendChild(titolo);
-            card.appendChild(toggleStagioni);
-
-            serie.stagioni.forEach(st => {
-              const stagioneDiv = document.createElement("div");
-              stagioneDiv.className = "stagione";
-
-              const toggleEpisodi = document.createElement("button");
-              toggleEpisodi.className = "button";
-              toggleEpisodi.textContent = `Stagione ${st.stagione}`;
-
-              toggleEpisodi.addEventListener("click", () => {
-                const episodi = stagioneDiv.querySelectorAll(".episodio");
-                episodi.forEach(e => {
-                  e.style.display = e.style.display === "block" ? "none" : "block";
-                });
-              });
-
-              stagioneDiv.appendChild(toggleEpisodi);
-
-              st.episodi.forEach(ep => {
-                const epDiv = document.createElement("div");
-                epDiv.className = "episodio";
-
-                const epTitle = document.createElement("p");
-                epTitle.textContent = ep.titolo;
-                epDiv.appendChild(epTitle);
-
-                const fontiFiltrate = [...new Set(ep.fonti.filter(f => f.includes("http") && !f.includes("index.html")))];
-
-                fontiFiltrate.forEach((fonte, idx) => {
-                  const fonteBtn = document.createElement("button");
-                  fonteBtn.className = "button";
-                  fonteBtn.textContent = `Fonte ${idx + 1}`;
-                  fonteBtn.addEventListener("click", () => {
-                    window.open(fonte, "_blank");
-                  });
-                  epDiv.appendChild(fonteBtn);
-                });
-
-                stagioneDiv.appendChild(epDiv);
-              });
-
-              card.appendChild(stagioneDiv);
-            });
-
             catalogo.appendChild(card);
+
+            // Aggiungi l'event listener per mostrare i dettagli
+            card.addEventListener("click", () => mostraDettaglioSerie(index));
           });
         })
         .catch(err => {
-          document.getElementById("catalogo").textContent = "Errore nel caricamento del catalogo.";
+          catalogo.textContent = "Errore nel caricamento del catalogo.";
           console.error("Errore JSON:", err);
         });
+
+      function mostraDettaglioSerie(index) {
+        const serie = serieData[index];
+        dettaglioCopertina.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
+        dettaglioTitolo.textContent = serie.titolo;
+        dettaglioStagioni.innerHTML = ""; // Pulisci i dettagli precedenti
+
+        serie.stagioni.forEach(st => {
+          const stagioneDiv = document.createElement("div");
+          stagioneDiv.className = "stagione";
+
+          const stagioneTitolo = document.createElement("h3");
+          stagioneTitolo.textContent = `Stagione ${st.stagione}`;
+          stagioneDiv.appendChild(stagioneTitolo);
+
+          st.episodi.forEach(ep => {
+            const episodioDiv = document.createElement("div");
+            episodioDiv.className = "episodio";
+
+            const epTitle = document.createElement("p");
+            epTitle.textContent = ep.titolo;
+            episodioDiv.appendChild(epTitle);
+
+            const fontiFiltrate = [...new Set(ep.fonti.filter(f => f.includes("http") && !f.includes("index.html")))];
+
+            fontiFiltrate.forEach((fonte, idx) => {
+              const fonteBtn = document.createElement("button");
+              fonteBtn.className = "button";
+              fonteBtn.textContent = `Fonte ${idx + 1}`;
+              fonteBtn.addEventListener("click", () => {
+                window.open(fonte, "_blank");
+              });
+              episodioDiv.appendChild(fonteBtn);
+            });
+
+            stagioneDiv.appendChild(episodioDiv);
+          });
+
+          dettaglioStagioni.appendChild(stagioneDiv);
+        });
+
+        dettaglioContainer.style.display = "block"; // Rendi visibile la "tendina"
+      }
+
+      // Aggiungi l'event listener per chiudere la "tendina"
+      chiudiDettaglio.addEventListener("click", () => {
+        dettaglioContainer.style.display = "none";
+      });
+
+      // Chiudi la "tendina" se si clicca fuori da essa
+      window.addEventListener("click", (event) => {
+        if (event.target === dettaglioContainer) {
+          dettaglioContainer.style.display = "none";
+        }
+      });
     });
   </script>
 </body>
