@@ -3,164 +3,135 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SerieXYZ2</title>
+  <title>Catalogo Serie</title>
   <style>
     body {
-      background-color: #121212;
-      color: white;
       font-family: sans-serif;
+      background-color: #121212;
+      color: #eee;
       margin: 0;
-      padding: 1rem;
+      padding: 0.5rem;
     }
     h1 {
       text-align: center;
+      color: #f0f0f0;
     }
-    #searchInput {
-      width: 100%;
-      padding: 0.5rem;
-      font-size: 1rem;
-      margin-bottom: 1rem;
-      border: none;
-      border-radius: 0.5rem;
-    }
-    .catalogo {
+    .serie-container {
       display: flex;
+      flex-wrap: nowrap;
       overflow-x: auto;
-      gap: 1rem;
-      padding-bottom: 1rem;
+      gap: 12px;
+      padding: 1rem 0.5rem;
     }
     .serie {
-      background: #1f1f1f;
-      border-radius: 12px;
-      padding: 0.5rem;
-      width: 200px;
-      flex-shrink: 0;
+      flex: 0 0 auto;
+      width: 160px;
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      padding: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     }
-    .copertina {
+    .serie img {
       width: 100%;
-      height: auto;
-      border-radius: 8px;
+      border-radius: 6px;
     }
-    .titolo {
-      font-weight: bold;
-      font-size: 1.1rem;
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
+    .serie h2 {
+      font-size: 1rem;
+      margin: 0.5rem 0;
     }
     button {
       background-color: #333;
       color: white;
       border: none;
-      padding: 0.4rem 0.6rem;
-      margin: 0.2rem 0;
+      padding: 6px 10px;
+      margin: 5px 0;
       border-radius: 6px;
       cursor: pointer;
+      font-size: 0.85rem;
     }
-    button:hover {
-      background-color: #555;
+    .stagione, .episodio {
+      margin-left: 8px;
+      margin-top: 4px;
     }
-    .stagioni, .episodi {
-      margin-left: 0.5rem;
-      margin-top: 0.3rem;
+    .episodio button {
+      margin: 2px 4px 4px 0;
     }
-    .nascosto {
+    .stagione, .episodio {
       display: none;
-    }
-    .episodio {
-      margin-top: 0.4rem;
     }
   </style>
 </head>
 <body>
-  <h1>SerieXYZ2</h1>
-  <input type="text" id="searchInput" placeholder="Cerca serie..." />
-
-  <div class="catalogo" id="catalogo"></div>
+  <h1>Catalogo Serie</h1>
+  <div id="catalogo" class="serie-container"></div>
 
   <script>
-    const searchInput = document.getElementById("searchInput");
-    const catalogo = document.getElementById("catalogo");
+    fetch("videos.json")
+      .then(res => res.json())
+      .then(data => {
+        const catalogo = document.getElementById("catalogo");
 
-    async function caricaCatalogo() {
-      const response = await fetch("videos.json");
-      let dati = await response.json();
+        data.forEach(serie => {
+          const card = document.createElement("div");
+          card.className = "serie";
 
-      // Ordina per ultima modifica (assumendo proprietà "updated" nel JSON)
-      dati.sort((a, b) => new Date(b.updated || 0) - new Date(a.updated || 0));
+          const img = document.createElement("img");
+          img.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
 
-      mostraSerie(dati);
+          const titolo = document.createElement("h2");
+          titolo.textContent = serie.titolo;
 
-      searchInput.addEventListener("input", () => {
-        const query = searchInput.value.toLowerCase();
-        const filtrate = dati.filter(serie => serie.titolo.toLowerCase().includes(query));
-        mostraSerie(filtrate);
-      });
-    }
+          const toggleBtn = document.createElement("button");
+          toggleBtn.textContent = "Mostra Stagioni";
+          toggleBtn.onclick = () => {
+            const stagioniDivs = card.querySelectorAll(".stagione");
+            stagioniDivs.forEach(div => div.style.display = div.style.display === "none" ? "block" : "none");
+            toggleBtn.textContent = toggleBtn.textContent === "Mostra Stagioni" ? "Nascondi Stagioni" : "Mostra Stagioni";
+          };
 
-    function mostraSerie(serieArray) {
-      catalogo.innerHTML = "";
+          card.appendChild(img);
+          card.appendChild(titolo);
+          card.appendChild(toggleBtn);
 
-      serieArray.forEach(serie => {
-        const div = document.createElement("div");
-        div.className = "serie";
+          serie.stagioni.forEach(st => {
+            const stagioneDiv = document.createElement("div");
+            stagioneDiv.className = "stagione";
+            const stButton = document.createElement("button");
+            stButton.textContent = `Stagione ${st.stagione}`;
+            stButton.onclick = () => {
+              const episodi = stagioneDiv.querySelectorAll(".episodio");
+              episodi.forEach(e => e.style.display = e.style.display === "none" ? "block" : "none");
+              stButton.textContent = stButton.textContent.includes("Mostra") ? `Stagione ${st.stagione}` : `Stagione ${st.stagione}`;
+            };
+            stagioneDiv.appendChild(stButton);
 
-        const img = document.createElement("img");
-        img.src = serie.locandina;
-        img.className = "copertina";
+            st.episodi.forEach(ep => {
+              const epDiv = document.createElement("div");
+              epDiv.className = "episodio";
+              const epTitle = document.createElement("p");
+              epTitle.textContent = ep.titolo;
+              epDiv.appendChild(epTitle);
 
-        const titolo = document.createElement("div");
-        titolo.className = "titolo";
-        titolo.innerText = serie.titolo;
-
-        const btnStagioni = document.createElement("button");
-        btnStagioni.innerText = `Stagioni: ${serie.stagioni.length}`;
-        const divStagioni = document.createElement("div");
-        divStagioni.className = "stagioni nascosto";
-
-        btnStagioni.addEventListener("click", () => {
-          divStagioni.classList.toggle("nascosto");
-        });
-
-        serie.stagioni.forEach((stagione, index) => {
-          const btnStagione = document.createElement("button");
-          btnStagione.innerText = `Stagione ${index + 1}`;
-          const divEpisodi = document.createElement("div");
-          divEpisodi.className = "episodi nascosto";
-
-          btnStagione.addEventListener("click", () => {
-            divEpisodi.classList.toggle("nascosto");
-          });
-
-          stagione.forEach((episodio, epIndex) => {
-            const epDiv = document.createElement("div");
-            epDiv.className = "episodio";
-            epDiv.innerText = `${epIndex + 1}. ${episodio.nome}`;
-
-            episodio.fonti.forEach((fonte, fonteIndex) => {
-              const btnFonte = document.createElement("button");
-              btnFonte.innerText = `Fonte ${fonteIndex + 1}`;
-              btnFonte.addEventListener("click", () => {
-                window.open(fonte, "_blank");
+              ep.fonti.forEach((fonte, idx) => {
+                const fonteBtn = document.createElement("button");
+                fonteBtn.textContent = `Fonte ${idx + 1}`;
+                fonteBtn.onclick = () => window.open(fonte, "_blank");
+                epDiv.appendChild(fonteBtn);
               });
-              epDiv.appendChild(btnFonte);
+
+              stagioneDiv.appendChild(epDiv);
             });
 
-            divEpisodi.appendChild(epDiv);
+            card.appendChild(stagioneDiv);
           });
 
-          divStagioni.appendChild(btnStagione);
-          divStagioni.appendChild(divEpisodi);
+          catalogo.appendChild(card);
         });
-
-        div.appendChild(img);
-        div.appendChild(titolo);
-        div.appendChild(btnStagioni);
-        div.appendChild(divStagioni);
-        catalogo.appendChild(div);
+      })
+      .catch(err => {
+        document.getElementById("catalogo").textContent = "Errore nel caricamento del catalogo.";
+        console.error("Errore JSON:", err);
       });
-    }
-
-    caricaCatalogo();
   </script>
 </body>
 </html>
