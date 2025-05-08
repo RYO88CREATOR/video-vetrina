@@ -64,6 +64,11 @@
       width: 100%;
       border-radius: 4px;
       margin-bottom: 0.3rem; /* Aggiungiamo un po' di spazio tra l'immagine e il titolo */
+      -webkit-user-select: none; /* Safari */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none; /* Standard */
+      pointer-events: auto; /* Assicurati che gli eventi del mouse funzionino ancora */
     }
     .serie-card h2 {
       font-size: 0.9rem;
