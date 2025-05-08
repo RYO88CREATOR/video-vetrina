@@ -16,6 +16,30 @@
       text-align: center;
       color: #f0f0f0;
     }
+    .barra-ricerca-container {
+      background-color: #1e1e1e;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: center;
+    }
+
+    #barraRicerca {
+      padding: 0.6rem;
+      border: none;
+      border-radius: 4px;
+      background-color: #333;
+      color: #eee;
+      width: 80%;
+      max-width: 600px;
+      font-size: 0.9rem;
+    }
+
+    #barraRicerca::placeholder {
+      color: #777;
+    }
     .serie-container {
       display: flex;
       flex-wrap: nowrap;
@@ -90,9 +114,11 @@
     .dettaglio-serie .stagione h3::after {
       content: "+"; /* Simbolo di espansione */
       font-size: 1rem;
+      margin-left: 0.5em; /* Aggiungiamo un margine a sinistra */
     }
     .dettaglio-serie .stagione.aperta h3::after {
       content: "-"; /* Simbolo di chiusura */
+      margin-left: 0.5em; /* Applichiamo lo stesso margine */
     }
     .dettaglio-serie .episodi {
       display: none; /* Nascosti di default */
@@ -128,17 +154,38 @@
     .bottone-chiudi:hover {
       color: #f0f0f0;
     }
+    .bottone-home {
+      position: absolute;
+      top: 0.3rem;
+      left: 0.3rem;
+      background-color: #333;
+      color: #eee;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      z-index: 11; /* Assicura che sia sopra gli altri elementi */
+    }
+
+    .bottone-home:hover {
+      background-color: #555;
+    }
     .clear-fix {
       clear: both;
     }
   </style>
 </head>
 <body>
+  <div class="barra-ricerca-container">
+    <input type="text" id="barraRicerca" placeholder="Cerca serie...">
+  </div>
   <h1>Catalogo Serie</h1>
   <div id="catalogo" class="serie-container"></div>
 
   <div id="dettaglioSerieContainer" class="dettaglio-container">
     <div id="dettaglioSerie" class="dettaglio-serie">
+      <button id="bottoneHome" class="bottone-home">Home</button>
       <button id="chiudiDettaglio" class="bottone-chiudi">&times;</button>
       <img id="dettaglioCopertina" src="" alt="Copertina">
       <h2 id="dettaglioTitolo"></h2>
@@ -149,12 +196,14 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      const barraRicerca = document.getElementById("barraRicerca");
       const catalogo = document.getElementById("catalogo");
       const dettaglioContainer = document.getElementById("dettaglioSerieContainer");
       const dettaglioCopertina = document.getElementById("dettaglioCopertina");
       const dettaglioTitolo = document.getElementById("dettaglioTitolo");
       const dettaglioStagioni = document.getElementById("dettaglioStagioni");
       const chiudiDettaglio = document.getElementById("chiudiDettaglio");
+      const bottoneHome = document.getElementById("bottoneHome");
 
       let serieData;
 
@@ -180,6 +229,22 @@
 
             card.addEventListener("click", () => mostraDettaglioSerie(index));
           });
+
+          // Funzionalità di ricerca
+          barraRicerca.addEventListener("input", (e) => {
+            const testoRicerca = e.target.value.toLowerCase();
+            const serieCards = document.querySelectorAll(".serie-card");
+
+            serieCards.forEach(card => {
+              const titoloSerie = card.querySelector("h2").textContent.toLowerCase();
+              if (titoloSerie.includes(testoRicerca)) {
+                card.style.display = "flex"; // Mostra la card se il titolo corrisponde
+              } else {
+                card.style.display = "none"; // Nascondi la card se non corrisponde
+              }
+            });
+          });
+
         })
         .catch(err => {
           catalogo.textContent = "Errore nel caricamento del catalogo.";
@@ -240,6 +305,10 @@
       }
 
       chiudiDettaglio.addEventListener("click", () => {
+        dettaglioContainer.style.display = "none";
+      });
+
+      bottoneHome.addEventListener("click", () => {
         dettaglioContainer.style.display = "none";
       });
 
