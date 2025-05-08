@@ -86,7 +86,9 @@
 
             toggleStagioni.addEventListener("click", () => {
               const stagioniDivs = card.querySelectorAll(".stagione");
-              stagioniDivs.forEach(div => div.style.display = div.style.display === "none" ? "block" : "none");
+              stagioniDivs.forEach(div => {
+                div.style.display = div.style.display === "block" ? "none" : "block";
+              });
               toggleStagioni.textContent = toggleStagioni.textContent === "Mostra Stagioni" ? "Nascondi Stagioni" : "Mostra Stagioni";
             });
 
@@ -104,7 +106,9 @@
 
               toggleEpisodi.addEventListener("click", () => {
                 const episodi = stagioneDiv.querySelectorAll(".episodio");
-                episodi.forEach(e => e.style.display = e.style.display === "none" ? "block" : "none");
+                episodi.forEach(e => {
+                  e.style.display = e.style.display === "block" ? "none" : "block";
+                });
               });
 
               stagioneDiv.appendChild(toggleEpisodi);
@@ -117,7 +121,6 @@
                 epTitle.textContent = ep.titolo;
                 epDiv.appendChild(epTitle);
 
-                // Filtra link validi ed evita duplicati e link tipo index.html
                 const fontiFiltrate = [...new Set(ep.fonti.filter(f => f.includes("http") && !f.includes("index.html")))];
 
                 fontiFiltrate.forEach((fonte, idx) => {
