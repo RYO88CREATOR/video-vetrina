@@ -355,51 +355,62 @@
   </script>
 
   <script>
-    fetch("https://rsshub.app/telegram/channel/amznoes.json")
-      .then(res => res.json())
-      .then(data => {
-        const posts = data.items.slice(0, 15); // ultimi 15 post
-        const container = document.getElementById("listaOfferte");
+function caricaOfferte() {
+  const container = document.getElementById("listaOfferte");
+  container.innerHTML = "Caricamento in corso...";
 
-        posts.forEach(item => {
-          const link = item.link;
-          const title = item.title || "";
-          const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
-          const imgUrl = imgMatch ? imgMatch[1] : "https://via.placeholder.com/150?text=Offerta";
+  const rssUrl = "https://rsshub.app/telegram/channel/amznoes.json";
+  const proxyUrl = "https://api.allorigins.win/get?url=" + encodeURIComponent(rssUrl);
 
-          const card = document.createElement("a");
-          card.href = link;
-          card.target = "_blank";
-          card.style.display = "block";
-          card.style.background = "#1e1e1e";
-          card.style.borderRadius = "8px";
-          card.style.padding = "6px";
-          card.style.textAlign = "center";
-          card.style.color = "#fff";
-          card.style.textDecoration = "none";
+  fetch(proxyUrl)
+    .then(res => res.json())
+    .then(data => {
+      const feed = JSON.parse(data.contents);
+      const posts = feed.items.slice(0, 15);
+      container.innerHTML = "";
 
-          const img = document.createElement("img");
-          img.src = imgUrl;
-          img.alt = "Offerta Amazon";
-          img.style.width = "100%";
-          img.style.height = "150px";
-          img.style.objectFit = "cover";
-          img.style.borderRadius = "6px";
+      posts.forEach(item => {
+        const link = item.link;
+        const title = item.title || "";
+        const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
+        const imgUrl = imgMatch ? imgMatch[1] : "https://via.placeholder.com/150?text=Offerta";
 
-          const caption = document.createElement("p");
-          caption.textContent = title;
-          caption.style.fontSize = "12px";
-          caption.style.margin = "6px 0 0";
+        const card = document.createElement("a");
+        card.href = link;
+        card.target = "_blank";
+        card.style.display = "block";
+        card.style.background = "#1e1e1e";
+        card.style.borderRadius = "8px";
+        card.style.padding = "6px";
+        card.style.textAlign = "center";
+        card.style.color = "#fff";
+        card.style.textDecoration = "none";
 
-          card.appendChild(img);
-          card.appendChild(caption);
-          container.appendChild(card);
-        });
-      })
-      .catch(err => {
-        document.getElementById("listaOfferte").textContent = "Errore nel caricamento delle offerte.";
-        console.error("Errore offerte:", err);
+        const img = document.createElement("img");
+        img.src = imgUrl;
+        img.alt = "Offerta Amazon";
+        img.style.width = "100%";
+        img.style.height = "150px";
+        img.style.objectFit = "cover";
+        img.style.borderRadius = "6px";
+
+        const caption = document.createElement("p");
+        caption.textContent = title;
+        caption.style.fontSize = "12px";
+        caption.style.margin = "6px 0 0";
+
+        card.appendChild(img);
+        card.appendChild(caption);
+        container.appendChild(card);
       });
-  </script>
+    })
+    .catch(err => {
+      container.textContent = "Errore nel caricamento delle offerte.";
+      console.error("Errore offerte:", err);
+    });
+}
+
+window.onload = caricaOfferte;
+</script>
 </body>
 </html>
