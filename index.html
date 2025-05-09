@@ -55,22 +55,21 @@
       padding: 6px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.3);
       cursor: pointer;
-      display: flex; /* Usiamo flexbox per disporre immagine e titolo verticalmente */
-      flex-direction: column; /* Elementi disposti in colonna */
-      align-items: center; /* Centra gli elementi orizzontalmente */
-      text-align: center; /* Allinea il testo del titolo al centro */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
     .serie-card img {
       width: 100%;
       border-radius: 4px;
-      margin-bottom: 0.3rem; /* Aggiungiamo un po' di spazio tra l'immagine e il titolo */
+      margin-bottom: 0.3rem;
     }
     .serie-card h2 {
       font-size: 0.9rem;
-      margin: 0; /* Rimuoviamo il margine predefinito sopra e sotto */
+      margin: 0;
     }
 
-    /* Stili per la "tendina" di dettaglio */
     .dettaglio-container {
       display: none;
       position: fixed;
@@ -161,9 +160,9 @@
     .bottone-home {
       position: absolute;
       top: 0.3rem;
-      right: 4rem; /* Spostiamo il bottone a destra */
-      background-color: #eee; /* Sfondo bianco */
-      color: #121212; /* Scritta nera */
+      right: 4rem;
+      background-color: #eee;
+      color: #121212;
       border: none;
       padding: 0.5rem 1rem;
       border-radius: 4px;
@@ -171,7 +170,6 @@
       font-size: 0.9rem;
       z-index: 11;
     }
-
     .bottone-home:hover {
       background-color: #f0f0f0;
     }
@@ -221,32 +219,27 @@
             card.dataset.serieIndex = index;
 
             const img = document.createElement("img");
-img.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
-img.alt = serie.titolo;
-img.oncontextmenu = e => e.preventDefault(); // Disabilita tasto destro
+            img.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
+            img.alt = serie.titolo;
+            img.oncontextmenu = e => e.preventDefault(); // Protezione click destro
+            card.appendChild(img);
 
             const titolo = document.createElement("h2");
             titolo.textContent = serie.titolo;
-
-            card.appendChild(img);
             card.appendChild(titolo);
+
             catalogo.appendChild(card);
 
             card.addEventListener("click", () => mostraDettaglioSerie(index));
           });
 
-          // Funzionalità di ricerca
           barraRicerca.addEventListener("input", (e) => {
             const testoRicerca = e.target.value.toLowerCase();
             const serieCards = document.querySelectorAll(".serie-card");
 
             serieCards.forEach(card => {
               const titoloSerie = card.querySelector("h2").textContent.toLowerCase();
-              if (titoloSerie.includes(testoRicerca)) {
-                card.style.display = "flex";
-              } else {
-                card.style.display = "none";
-              }
+              card.style.display = titoloSerie.includes(testoRicerca) ? "flex" : "none";
             });
           });
 
@@ -259,6 +252,7 @@ img.oncontextmenu = e => e.preventDefault(); // Disabilita tasto destro
       function mostraDettaglioSerie(index) {
         const serie = serieData[index];
         dettaglioCopertina.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
+        dettaglioCopertina.oncontextmenu = e => e.preventDefault(); // Protezione click destro
         dettaglioTitolo.textContent = serie.titolo;
         dettaglioStagioni.innerHTML = "";
 
@@ -285,7 +279,6 @@ img.oncontextmenu = e => e.preventDefault(); // Disabilita tasto destro
 
             fontiFiltrate.forEach((fonte, idx) => {
               const fonteBtn = document.createElement("button");
-              fonteBtn.className = "button";
               fonteBtn.textContent = `Fonte ${idx + 1}`;
               fonteBtn.addEventListener("click", () => {
                 window.open(fonte, "_blank");
@@ -299,7 +292,6 @@ img.oncontextmenu = e => e.preventDefault(); // Disabilita tasto destro
           stagioneDiv.appendChild(episodiDiv);
           dettaglioStagioni.appendChild(stagioneDiv);
 
-          // Aggiungi l'event listener per espandere/chiudere gli episodi
           stagioneTitolo.addEventListener("click", () => {
             episodiDiv.style.display = episodiDiv.style.display === "block" ? "none" : "block";
             stagioneDiv.classList.toggle("aperta");
