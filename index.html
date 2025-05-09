@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Catalogo Serie</title>
   <style>
     body {
-      font-family: sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f4f4;
+      font-family: sans-serif;
+      background-color: #121212;
+      color: #fff;
+      -webkit-user-select: none;
+      user-select: none;
     }
 
     header {
-      background-color: #222;
-      color: #fff;
-      padding: 10px;
+      background-color: #1f1f1f;
+      padding: 15px;
       text-align: center;
+      font-size: 22px;
+      font-weight: bold;
     }
 
     #barraRicerca {
@@ -24,33 +28,54 @@
       padding: 10px;
       margin: 10px auto;
       display: block;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
     }
 
-    #catalogo {
+    #catalogoWrapper {
+      overflow-x: auto;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      padding: 15px;
+      gap: 12px;
+      padding: 10px;
+      scroll-snap-type: x mandatory;
     }
 
     .serie-card {
-      background-color: #fff;
+      background-color: #1e1e1e;
       border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-      width: 160px;
-      padding: 10px;
-      text-align: center;
+      flex: 0 0 auto;
+      width: 140px;
+      scroll-snap-align: start;
       cursor: pointer;
+      padding: 6px;
+      text-align: center;
     }
 
     .serie-card img {
       width: 100%;
-      height: auto;
+      height: 210px;
       border-radius: 6px;
-      pointer-events: none; /* Impedisce il drag */
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    .serie-card h2 {
+      font-size: 14px;
+      margin: 8px 0 0;
+      color: #fff;
+    }
+
+    #adsPlaceholder {
+      margin: 15px;
+      height: 80px;
+      background-color: #333;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+      font-size: 14px;
     }
 
     #dettaglioSerieContainer {
@@ -60,14 +85,14 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(0, 0, 0, 0.9);
-      z-index: 999;
+      background-color: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
       overflow-y: auto;
-      padding: 30px 15px;
+      padding: 15px;
     }
 
     #dettaglioSerie {
-      background-color: #fff;
+      background-color: #1e1e1e;
       border-radius: 10px;
       max-width: 800px;
       margin: auto;
@@ -75,17 +100,17 @@
     }
 
     #dettaglioCopertina {
-      width: 160px;
-      height: auto;
+      width: 120px;
       float: left;
-      margin-right: 20px;
+      margin-right: 15px;
       border-radius: 8px;
       pointer-events: none;
     }
 
     #dettaglioTitolo {
-      font-size: 24px;
+      font-size: 20px;
       margin-top: 0;
+      color: #fff;
     }
 
     .stagione {
@@ -93,16 +118,16 @@
     }
 
     .stagione h3 {
-      cursor: pointer;
-      background-color: #eee;
-      padding: 8px;
+      background-color: #333;
+      padding: 10px;
       margin: 0;
+      cursor: pointer;
     }
 
     .episodi {
       display: none;
       padding: 10px;
-      background-color: #fafafa;
+      background-color: #222;
     }
 
     .stagione.aperta .episodi {
@@ -115,65 +140,56 @@
 
     .episodio button {
       margin-right: 5px;
-    }
-
-    #chiudiDettaglio {
-      float: right;
-      cursor: pointer;
-      background: #ff5555;
+      padding: 6px 10px;
       border: none;
-      color: white;
-      padding: 6px 12px;
       border-radius: 5px;
-      font-weight: bold;
+      background-color: #555;
+      color: #fff;
     }
 
-    #bottoneHome {
-      margin: 20px auto;
-      display: block;
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 8px;
+    #frecciaIndietro {
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      background: none;
       border: none;
-      background-color: #444;
+      font-size: 26px;
       color: white;
       cursor: pointer;
+      z-index: 1100;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Catalogo Serie</h1>
-  </header>
+  <header>Catalogo Serie</header>
 
-  <input type="text" id="barraRicerca" placeholder="Cerca una serie...">
+  <input type="text" id="barraRicerca" placeholder="Cerca una serie..." />
 
-  <div id="catalogo"></div>
+  <div id="catalogoWrapper"></div>
+
+  <div id="adsPlaceholder">Spazio per pubblicità</div>
 
   <div id="dettaglioSerieContainer">
+    <button id="frecciaIndietro">&#8592;</button>
     <div id="dettaglioSerie">
-      <button id="chiudiDettaglio">X</button>
-      <img id="dettaglioCopertina" src="" alt="Copertina">
+      <img id="dettaglioCopertina" src="" alt="Copertina" />
       <h2 id="dettaglioTitolo"></h2>
       <div id="dettaglioStagioni"></div>
     </div>
   </div>
 
-  <button id="bottoneHome">Torna al Catalogo</button>
-
   <script>
-    // Disabilita il tasto destro su tutto il sito
+    // Disabilita tasto destro su tutto il sito
     document.addEventListener("contextmenu", e => e.preventDefault());
 
     document.addEventListener("DOMContentLoaded", () => {
       const barraRicerca = document.getElementById("barraRicerca");
-      const catalogo = document.getElementById("catalogo");
+      const catalogoWrapper = document.getElementById("catalogoWrapper");
       const dettaglioContainer = document.getElementById("dettaglioSerieContainer");
       const dettaglioCopertina = document.getElementById("dettaglioCopertina");
       const dettaglioTitolo = document.getElementById("dettaglioTitolo");
       const dettaglioStagioni = document.getElementById("dettaglioStagioni");
-      const chiudiDettaglio = document.getElementById("chiudiDettaglio");
-      const bottoneHome = document.getElementById("bottoneHome");
+      const frecciaIndietro = document.getElementById("frecciaIndietro");
 
       let serieData;
 
@@ -181,42 +197,44 @@
         .then(res => res.json())
         .then(data => {
           serieData = data;
-          data.forEach((serie, index) => {
-            const card = document.createElement("div");
-            card.className = "serie-card";
-            card.dataset.serieIndex = index;
+          mostraCatalogo(data);
 
-            const img = document.createElement("img");
-            img.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
-            img.alt = serie.titolo;
-            card.appendChild(img);
-
-            const titolo = document.createElement("h2");
-            titolo.textContent = serie.titolo;
-            card.appendChild(titolo);
-
-            catalogo.appendChild(card);
-
-            card.addEventListener("click", () => mostraDettaglioSerie(index));
-          });
-
-          barraRicerca.addEventListener("input", (e) => {
-            const testoRicerca = e.target.value.toLowerCase();
-            const serieCards = document.querySelectorAll(".serie-card");
-
-            serieCards.forEach(card => {
-              const titoloSerie = card.querySelector("h2").textContent.toLowerCase();
-              card.style.display = titoloSerie.includes(testoRicerca) ? "flex" : "none";
-            });
+          barraRicerca.addEventListener("input", () => {
+            const testo = barraRicerca.value.toLowerCase();
+            const filtrate = serieData.filter(serie =>
+              serie.titolo.toLowerCase().includes(testo)
+            );
+            mostraCatalogo(filtrate);
           });
         })
         .catch(err => {
-          catalogo.textContent = "Errore nel caricamento del catalogo.";
+          catalogoWrapper.textContent = "Errore nel caricamento del catalogo.";
           console.error("Errore JSON:", err);
         });
 
-      function mostraDettaglioSerie(index) {
-        const serie = serieData[index];
+      function mostraCatalogo(lista) {
+        catalogoWrapper.innerHTML = "";
+        lista.forEach((serie, index) => {
+          const card = document.createElement("div");
+          card.className = "serie-card";
+          card.dataset.index = index;
+
+          const img = document.createElement("img");
+          img.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
+          img.alt = serie.titolo;
+
+          const titolo = document.createElement("h2");
+          titolo.textContent = serie.titolo;
+
+          card.appendChild(img);
+          card.appendChild(titolo);
+          catalogoWrapper.appendChild(card);
+
+          card.addEventListener("click", () => mostraDettaglioSerie(serie));
+        });
+      }
+
+      function mostraDettaglioSerie(serie) {
         dettaglioCopertina.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
         dettaglioTitolo.textContent = serie.titolo;
         dettaglioStagioni.innerHTML = "";
@@ -240,15 +258,12 @@
             epTitle.textContent = ep.titolo;
             episodioDiv.appendChild(epTitle);
 
-            const fontiFiltrate = [...new Set(ep.fonti.filter(f => f.includes("http") && !f.includes("index.html")))];
-
-            fontiFiltrate.forEach((fonte, idx) => {
-              const fonteBtn = document.createElement("button");
-              fonteBtn.textContent = `Fonte ${idx + 1}`;
-              fonteBtn.addEventListener("click", () => {
-                window.open(fonte, "_blank");
-              });
-              episodioDiv.appendChild(fonteBtn);
+            const fonti = [...new Set(ep.fonti.filter(f => f.includes("http") && !f.includes("index.html")))];
+            fonti.forEach((fonte, idx) => {
+              const btn = document.createElement("button");
+              btn.textContent = `Fonte ${idx + 1}`;
+              btn.addEventListener("click", () => window.open(fonte, "_blank"));
+              episodioDiv.appendChild(btn);
             });
 
             episodiDiv.appendChild(episodioDiv);
@@ -258,7 +273,6 @@
           dettaglioStagioni.appendChild(stagioneDiv);
 
           stagioneTitolo.addEventListener("click", () => {
-            episodiDiv.style.display = episodiDiv.style.display === "block" ? "none" : "block";
             stagioneDiv.classList.toggle("aperta");
           });
         });
@@ -266,18 +280,8 @@
         dettaglioContainer.style.display = "block";
       }
 
-      chiudiDettaglio.addEventListener("click", () => {
+      frecciaIndietro.addEventListener("click", () => {
         dettaglioContainer.style.display = "none";
-      });
-
-      bottoneHome.addEventListener("click", () => {
-        dettaglioContainer.style.display = "none";
-      });
-
-      window.addEventListener("click", (event) => {
-        if (event.target === dettaglioContainer) {
-          dettaglioContainer.style.display = "none";
-        }
       });
     });
   </script>
