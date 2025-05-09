@@ -94,18 +94,6 @@
       display: none;
     }
 
-    #adsPlaceholder {
-      margin: 15px;
-      height: 80px;
-      background-color: #333;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #aaa;
-      font-size: 14px;
-    }
-
     #dettaglioSerieContainer {
       display: none;
       position: fixed;
@@ -186,6 +174,36 @@
       cursor: pointer;
       z-index: 1100;
     }
+
+    #offerteTelegram {
+      margin: 20px auto;
+      max-width: 800px;
+      padding: 10px;
+    }
+
+    #offerteTelegram h2 {
+      text-align:center;
+    }
+
+    #listaOfferte {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+    }
+
+    #offerteTelegram div a {
+      background:#4fc3f7;
+      color:#000;
+      padding:10px 20px;
+      border-radius:5px;
+      text-decoration:none;
+      font-weight:bold;
+    }
+
+    #offerteTelegram div {
+      text-align:center;
+      margin-top: 15px;
+    }
   </style>
 </head>
 <body>
@@ -205,7 +223,13 @@
     </div>
   </div>
 
-  <div id="adsPlaceholder">Spazio per pubblicità</div>
+  <div id="offerteTelegram" style="margin: 20px auto; max-width: 800px; padding: 10px;">
+    <h2 style="text-align:center;">Offerte Amazon Consigliate</h2>
+    <div id="listaOfferte" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;"></div>
+    <div style="text-align:center; margin-top: 15px;">
+      <a href="https://t.me/amznoes" target="_blank" style="background:#4fc3f7; color:#000; padding:10px 20px; border-radius:5px; text-decoration:none; font-weight:bold;">Entra nel canale</a>
+    </div>
+  </div>
 
   <div id="dettaglioSerieContainer">
     <button id="frecciaIndietro">&#8592;</button>
@@ -328,6 +352,54 @@
         vediSenzaPubblicitaGeneraleTendina.style.display = vediSenzaPubblicitaGeneraleTendina.style.display === "none" ? "block" : "none";
       });
     });
+  </script>
+
+  <script>
+    fetch("https://rsshub.app/telegram/channel/amznoes.json")
+      .then(res => res.json())
+      .then(data => {
+        const posts = data.items.slice(0, 15); // ultimi 15 post
+        const container = document.getElementById("listaOfferte");
+
+        posts.forEach(item => {
+          const link = item.link;
+          const title = item.title || "";
+          const imgMatch = item.description.match(/<img[^>]+src="([^"]+)"/);
+          const imgUrl = imgMatch ? imgMatch[1] : "https://via.placeholder.com/150?text=Offerta";
+
+          const card = document.createElement("a");
+          card.href = link;
+          card.target = "_blank";
+          card.style.display = "block";
+          card.style.background = "#1e1e1e";
+          card.style.borderRadius = "8px";
+          card.style.padding = "6px";
+          card.style.textAlign = "center";
+          card.style.color = "#fff";
+          card.style.textDecoration = "none";
+
+          const img = document.createElement("img");
+          img.src = imgUrl;
+          img.alt = "Offerta Amazon";
+          img.style.width = "100%";
+          img.style.height = "150px";
+          img.style.objectFit = "cover";
+          img.style.borderRadius = "6px";
+
+          const caption = document.createElement("p");
+          caption.textContent = title;
+          caption.style.fontSize = "12px";
+          caption.style.margin = "6px 0 0";
+
+          card.appendChild(img);
+          card.appendChild(caption);
+          container.appendChild(card);
+        });
+      })
+      .catch(err => {
+        document.getElementById("listaOfferte").textContent = "Errore nel caricamento delle offerte.";
+        console.error("Errore offerte:", err);
+      });
   </script>
 </body>
 </html>
