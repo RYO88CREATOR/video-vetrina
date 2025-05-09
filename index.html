@@ -8,41 +8,29 @@
     body {
       font-family: sans-serif;
       margin: 0;
-      background-color: #f0f0f0;
+      background-color: #f8f8f8;
     }
 
     #barraRicerca {
       width: 100%;
-      padding: 15px;
-      font-size: 1.2em;
+      padding: 10px;
+      font-size: 1em;
       box-sizing: border-box;
       border: none;
       border-bottom: 1px solid #ccc;
     }
 
     #catalogo {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 16px;
-      padding: 16px;
+      padding: 10px;
     }
 
     .serie-card {
-      width: 160px;
+      display: inline-block;
+      width: 140px;
+      margin: 10px;
+      vertical-align: top;
       cursor: pointer;
-      background: white;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .serie-card:hover {
-      transform: scale(1.05);
+      text-align: center;
     }
 
     .serie-card img {
@@ -53,9 +41,8 @@
     }
 
     .serie-card h2 {
-      margin: 10px;
-      font-size: 1em;
-      text-align: center;
+      font-size: 0.9em;
+      margin: 5px 0;
     }
 
     #dettaglioSerieContainer {
@@ -66,7 +53,7 @@
       width: 100%;
       height: 100%;
       overflow-y: auto;
-      background-color: rgba(0,0,0,0.85);
+      background-color: rgba(0, 0, 0, 0.85);
       z-index: 10;
       padding: 20px;
       box-sizing: border-box;
@@ -78,12 +65,6 @@
       margin: auto;
       padding: 20px;
       border-radius: 8px;
-    }
-
-    #dettaglioCopertina {
-      width: 160px;
-      float: left;
-      margin-right: 20px;
     }
 
     #dettaglioTitolo {
@@ -157,7 +138,6 @@
 
 <div id="dettaglioSerieContainer">
   <div id="dettaglioSerie">
-    <img id="dettaglioCopertina" src="" alt="Copertina" draggable="false" oncontextmenu="return false">
     <h2 id="dettaglioTitolo"></h2>
     <div id="dettaglioStagioni"></div>
     <div id="chiudiDettaglio"><button class="button">Chiudi</button></div>
@@ -171,7 +151,6 @@
     const barraRicerca = document.getElementById("barraRicerca");
     const catalogo = document.getElementById("catalogo");
     const dettaglioContainer = document.getElementById("dettaglioSerieContainer");
-    const dettaglioCopertina = document.getElementById("dettaglioCopertina");
     const dettaglioTitolo = document.getElementById("dettaglioTitolo");
     const dettaglioStagioni = document.getElementById("dettaglioStagioni");
     const chiudiDettaglio = document.getElementById("chiudiDettaglio");
@@ -189,7 +168,7 @@
           card.dataset.serieIndex = index;
 
           const img = document.createElement("img");
-          img.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
+          img.src = serie.copertina || "https://via.placeholder.com/140x200?text=Copertina";
           img.alt = serie.titolo;
           img.setAttribute("oncontextmenu", "return false");
           img.setAttribute("draggable", "false");
@@ -210,7 +189,7 @@
 
           serieCards.forEach(card => {
             const titoloSerie = card.querySelector("h2").textContent.toLowerCase();
-            card.style.display = titoloSerie.includes(testoRicerca) ? "flex" : "none";
+            card.style.display = titoloSerie.includes(testoRicerca) ? "inline-block" : "none";
           });
         });
 
@@ -222,10 +201,6 @@
 
     function mostraDettaglioSerie(index) {
       const serie = serieData[index];
-      dettaglioCopertina.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
-      dettaglioCopertina.setAttribute("oncontextmenu", "return false");
-      dettaglioCopertina.setAttribute("draggable", "false");
-
       dettaglioTitolo.textContent = serie.titolo;
       dettaglioStagioni.innerHTML = "";
 
