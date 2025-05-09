@@ -1,209 +1,170 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Catalogo Serie</title>
   <style>
     body {
       font-family: sans-serif;
-      background-color: #121212;
-      color: #eee;
       margin: 0;
       padding: 0;
-      overflow-x: hidden; /* Per evitare lo scrolling orizzontale */
+      background-color: #f4f4f4;
     }
 
-    h1 {
+    header {
+      background-color: #222;
+      color: #fff;
+      padding: 10px;
       text-align: center;
-      color: #f0f0f0;
-    }
-
-    .barra-ricerca-container {
-      background-color: #1e1e1e;
-      padding: 0.8rem;
-      margin-bottom: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-      display: flex;
-      justify-content: center;
     }
 
     #barraRicerca {
-      padding: 0.6rem;
-      border: none;
-      border-radius: 4px;
-      background-color: #333;
-      color: #eee;
-      width: 80%;
-      max-width: 600px;
-      font-size: 0.9rem;
+      width: 90%;
+      padding: 10px;
+      margin: 10px auto;
+      display: block;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
 
-    .serie-container {
+    #catalogo {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-around;
-      gap: 16px;
-      padding: 0.5rem;
+      justify-content: center;
+      gap: 15px;
+      padding: 15px;
     }
 
     .serie-card {
-      width: 160px;
-      background-color: #1e1e1e;
+      background-color: #fff;
       border-radius: 8px;
-      padding: 6px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      width: 160px;
+      padding: 10px;
       text-align: center;
-      transition: transform 0.2s ease-in-out;
+      cursor: pointer;
     }
 
     .serie-card img {
       width: 100%;
-      border-radius: 4px;
-      margin-bottom: 0.3rem;
+      height: auto;
+      border-radius: 6px;
+      pointer-events: none; /* Impedisce il drag */
     }
 
-    .serie-card h2 {
-      font-size: 0.9rem;
-      margin: 0;
-    }
-
-    .serie-card:hover {
-      transform: scale(1.05);
-    }
-
-    .dettaglio-container {
+    #dettaglioSerieContainer {
       display: none;
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      right: 0;
+      bottom: 0;
       background-color: rgba(0, 0, 0, 0.9);
-      z-index: 10;
+      z-index: 999;
       overflow-y: auto;
-      padding: 1rem;
+      padding: 30px 15px;
     }
 
-    .dettaglio-serie {
-      background-color: #1e1e1e;
-      border-radius: 8px;
-      padding: 0.8rem;
-      max-width: 95%;
-      margin: 1rem auto;
-      color: #eee;
-      position: relative;
+    #dettaglioSerie {
+      background-color: #fff;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
     }
 
-    .dettaglio-serie img {
-      width: 80px;
-      border-radius: 4px;
+    #dettaglioCopertina {
+      width: 160px;
+      height: auto;
       float: left;
-      margin-right: 0.5rem;
+      margin-right: 20px;
+      border-radius: 8px;
+      pointer-events: none;
     }
 
-    .dettaglio-serie h2 {
-      font-size: 1.2rem;
+    #dettaglioTitolo {
+      font-size: 24px;
       margin-top: 0;
     }
 
     .stagione {
-      margin-top: 0.8rem;
-      border-top: 1px solid #333;
-      padding-top: 0.8rem;
+      margin-top: 20px;
     }
 
     .stagione h3 {
-      font-size: 1rem;
-      margin-bottom: 0.3rem;
       cursor: pointer;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-    }
-
-    .stagione h3::after {
-      content: "+";
-      font-size: 1rem;
-      margin-left: 0.5em;
-    }
-
-    .stagione.aperta h3::after {
-      content: "-";
+      background-color: #eee;
+      padding: 8px;
+      margin: 0;
     }
 
     .episodi {
       display: none;
-      padding-left: 0.5rem;
+      padding: 10px;
+      background-color: #fafafa;
+    }
+
+    .stagione.aperta .episodi {
+      display: block;
+    }
+
+    .episodio {
+      margin-bottom: 10px;
     }
 
     .episodio button {
-      background-color: #333;
+      margin-right: 5px;
+    }
+
+    #chiudiDettaglio {
+      float: right;
+      cursor: pointer;
+      background: #ff5555;
+      border: none;
       color: white;
-      border: none;
-      padding: 4px 8px;
-      margin: 3px 3px 0 0;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.75rem;
-      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-weight: bold;
     }
 
-    .clear-fix {
-      clear: both;
-    }
-
-    .bottone-chiudi {
-      position: absolute;
-      top: 0.3rem;
-      right: 0.3rem;
-      background: none;
-      color: #eee;
+    #bottoneHome {
+      margin: 20px auto;
+      display: block;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
       border: none;
-      font-size: 1.2rem;
+      background-color: #444;
+      color: white;
       cursor: pointer;
-      padding: 0;
-    }
-
-    .bottone-home {
-      position: absolute;
-      top: 0.3rem;
-      right: 4rem;
-      background-color: #eee;
-      color: #121212;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      z-index: 11;
     }
   </style>
 </head>
 <body>
-  <div class="barra-ricerca-container">
-    <input type="text" id="barraRicerca" placeholder="Cerca serie...">
-  </div>
-  <h1>Catalogo Serie</h1>
-  <div id="catalogo" class="serie-container"></div>
+  <header>
+    <h1>Catalogo Serie</h1>
+  </header>
 
-  <div id="dettaglioSerieContainer" class="dettaglio-container">
-    <div id="dettaglioSerie" class="dettaglio-serie">
-      <button id="bottoneHome" class="bottone-home">Home</button>
-      <button id="chiudiDettaglio" class="bottone-chiudi">&times;</button>
+  <input type="text" id="barraRicerca" placeholder="Cerca una serie...">
+
+  <div id="catalogo"></div>
+
+  <div id="dettaglioSerieContainer">
+    <div id="dettaglioSerie">
+      <button id="chiudiDettaglio">X</button>
       <img id="dettaglioCopertina" src="" alt="Copertina">
       <h2 id="dettaglioTitolo"></h2>
       <div id="dettaglioStagioni"></div>
-      <div class="clear-fix"></div>
     </div>
   </div>
 
+  <button id="bottoneHome">Torna al Catalogo</button>
+
   <script>
+    // Disabilita il tasto destro su tutto il sito
+    document.addEventListener("contextmenu", e => e.preventDefault());
+
     document.addEventListener("DOMContentLoaded", () => {
       const barraRicerca = document.getElementById("barraRicerca");
       const catalogo = document.getElementById("catalogo");
@@ -228,12 +189,12 @@
             const img = document.createElement("img");
             img.src = serie.copertina || "https://via.placeholder.com/160x240?text=Copertina";
             img.alt = serie.titolo;
+            card.appendChild(img);
 
             const titolo = document.createElement("h2");
             titolo.textContent = serie.titolo;
-
-            card.appendChild(img);
             card.appendChild(titolo);
+
             catalogo.appendChild(card);
 
             card.addEventListener("click", () => mostraDettaglioSerie(index));
@@ -245,14 +206,9 @@
 
             serieCards.forEach(card => {
               const titoloSerie = card.querySelector("h2").textContent.toLowerCase();
-              if (titoloSerie.includes(testoRicerca)) {
-                card.style.display = "flex";
-              } else {
-                card.style.display = "none";
-              }
+              card.style.display = titoloSerie.includes(testoRicerca) ? "flex" : "none";
             });
           });
-
         })
         .catch(err => {
           catalogo.textContent = "Errore nel caricamento del catalogo.";
@@ -288,7 +244,6 @@
 
             fontiFiltrate.forEach((fonte, idx) => {
               const fonteBtn = document.createElement("button");
-              fonteBtn.className = "button";
               fonteBtn.textContent = `Fonte ${idx + 1}`;
               fonteBtn.addEventListener("click", () => {
                 window.open(fonte, "_blank");
@@ -324,11 +279,6 @@
           dettaglioContainer.style.display = "none";
         }
       });
-    });
-
-    // Disabilitare il tasto destro su tutta la pagina
-    document.addEventListener("contextmenu", (e) => {
-      e.preventDefault();
     });
   </script>
 </body>
